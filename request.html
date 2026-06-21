@@ -273,7 +273,7 @@ footer{padding:1.8rem 2rem;border-top:1px solid var(--line);text-align:center;ba
       </div>
 
       <div class="submit-row">
-        <button class="btn-submit" onclick="submitRequestForm()">
+        <button class="btn-submit" id="reqSubmitBtn" onclick="submitRequestForm()">
           <span data-en>Send request</span><span data-ar>إرسال الطلب</span>
         </button>
         <div class="submit-hint">
@@ -441,7 +441,7 @@ function withLang(linkEl){
   }
 })();
 
-function submitRequestForm(){
+async function submitRequestForm(){
   const name = document.getElementById('fName').value.trim();
   const email = document.getElementById('fEmail').value.trim();
   const idea = document.getElementById('fIdea').value.trim();
@@ -461,21 +461,61 @@ function submitRequestForm(){
   const sectorLabel = getDropdownLabel('fSector');
   const serviceLabel = getDropdownLabel('fService');
 
-  let body = 'Name: ' + name + '%0AEmail: ' + email;
-  body += '%0AIdea: ' + encodeURIComponent(idea);
-  body += '%0ASector: ' + encodeURIComponent(sectorLabel);
-  body += '%0AService: ' + encodeURIComponent(serviceLabel);
-  if(city) body += '%0ACity: ' + encodeURIComponent(city);
-  if(country) body += '%0ACountry: ' + encodeURIComponent(country);
-  if(notes) body += '%0ANotes: ' + encodeURIComponent(notes);
-  body += '%0ANewsletter opt-in: ' + (newsletter ? 'Yes' : 'No');
+  const submitBtn = document.getElementById('reqSubmitBtn');
+  const originalBtnHTML = submitBtn.innerHTML;
+  submitBtn.disabled = true;
+  submitBtn.style.opacity = '0.6';
+  submitBtn.innerHTML = isAr ? 'جارٍ الإرسال...' : 'Sending...';
 
-  const mailtoUrl = 'mailto:info@meiggroup.com?subject=' + encodeURIComponent('New Assessment Request — ' + name) + '&body=' + body;
-  const link = document.createElement('a');
-  link.href = mailtoUrl;
-  link.click();
+  const payload = {
+    name: name,
+    email: email,
+    idea: idea,
+    sector: sectorLabel,
+    service: serviceLabel,
+    city: city || (isAr ? 'غير محدد' : 'Not specified'),
+    country: country || (isAr ? 'غير محدد' : 'Not specified'),
+    notes: notes || '—',
+    newsletter_optin: newsletter ? 'Yes' : 'No',
+    _subject: 'New Assessment Request — ' + name
+  };
 
-  // ===== Populate the on-page snapshot =====
+  let sendSucceeded = false;
+  try{
+    const response = await fetch('https://formspree.io/f/mojoangy', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    sendSucceeded = response.ok;
+  } catch(err){
+    sendSucceeded = false;
+  }
+
+  submitBtn.disabled = false;
+  submitBtn.style.opacity = '1';
+  submitBtn.innerHTML = originalBtnHTML;
+
+  if(!sendSucceeded){
+    // Fallback: open the user's mail client with a pre-filled message so the request is never lost
+    let body = 'Name: ' + name + '%0AEmail: ' + email;
+    body += '%0AIdea: ' + encodeURIComponent(idea);
+    body += '%0ASector: ' + encodeURIComponent(sectorLabel);
+    body += '%0AService: ' + encodeURIComponent(serviceLabel);
+    if(city) body += '%0ACity: ' + encodeURIComponent(city);
+    if(country) body += '%0ACountry: ' + encodeURIComponent(country);
+    if(notes) body += '%0ANotes: ' + encodeURIComponent(notes);
+    body += '%0ANewsletter opt-in: ' + (newsletter ? 'Yes' : 'No');
+    const mailtoUrl = 'mailto:info@meiggroup.com?subject=' + encodeURIComponent('New Assessment Request — ' + name) + '&body=' + body;
+
+    alert(isAr
+      ? 'تعذّر إرسال الطلب تلقائياً. سيتم فتح بريدك لإرسال الطلب يدوياً كبديل.'
+      : 'We could not send your request automatically. Your email app will open so you can send it manually instead.');
+    window.location.href = mailtoUrl;
+    return;
+  }
+
+  // ===== Populate the on-page snapshot (only after a confirmed successful send) =====
   document.getElementById('snapSector').textContent = sectorLabel;
   document.getElementById('snapService').textContent = serviceLabel;
   const locationText = [city, country].filter(Boolean).join(', ');
