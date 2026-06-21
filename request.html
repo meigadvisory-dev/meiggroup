@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request an Assessment — MENA Economic Intelligence Group</title>
+<meta name="description" content="Request a free initial assessment from MENA Economic Intelligence Group.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171c;
+  --ink-soft:#4a4f59;
+  --ink-faint:#8d92a0;
+  --paper:#fbfaf7;
+  --panel:#ffffff;
+  --line:#e4e1da;
+  --navy:#1f3a5f;
+  --navy-deep:#13243d;
+  --gold:#a87f3f;
+  --gold-soft:#f3ead9;
+  --serif:'Source Serif 4', Georgia, serif;
+  --sans:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --arserif:'Noto Naskh Arabic', serif;
+  --arsans:'Noto Kufi Arabic', sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer}
+
+html[dir="rtl"] body{font-family:var(--arsans)}
+html[dir="rtl"] .page-title,
+html[dir="rtl"] .brand-name,
+html[dir="rtl"] .success-title{font-family:var(--arserif)}
+/* Scoped strictly to translation span pairs — never matches other elements that merely happen to carry data-en/data-ar (e.g. dropdown options) */
+span[data-ar]{display:none}
+html[dir="rtl"] span[data-en]{display:none}
+html[dir="rtl"] span[data-ar]{display:inline}
+html[dir="rtl"] div[data-ar].translate-block,
+html[dir="rtl"] p[data-ar]{display:block}
+
+.lang-btn{background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-size:12.5px;font-weight:500;padding:7px 13px;border-radius:3px;display:inline-flex;align-items:center;gap:5px}
+.lang-btn:hover{border-color:var(--ink-faint);color:var(--ink)}
+
+nav{position:relative;background:var(--paper);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:760px;margin:0 auto;padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-mark{width:28px;height:28px;flex-shrink:0}
+.brand-name{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-0.2px}
+
+.page-wrap{max-width:640px;margin:0 auto;padding:3.5rem 2rem 5rem}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-faint);text-decoration:none;margin-bottom:1.8rem}
+.back-link:hover{color:var(--ink)}
+html[dir="rtl"] .back-link svg{transform:scaleX(-1)}
+
+.page-eyebrow{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.7rem}
+.page-title{font-family:var(--serif);font-size:32px;font-weight:600;letter-spacing:-0.6px;margin-bottom:.9rem;line-height:1.2}
+html[dir="rtl"] .page-title{letter-spacing:0;line-height:1.4}
+.page-sub{font-size:15px;color:var(--ink-soft);line-height:1.7;margin-bottom:2.6rem;max-width:520px}
+
+.free-note{display:flex;align-items:flex-start;gap:10px;background:var(--gold-soft);border:1px solid #e9dcc4;border-radius:4px;padding:1rem 1.2rem;margin-bottom:2.4rem;font-size:13.5px;color:var(--navy)}
+.free-note svg{flex-shrink:0;margin-top:2px}
+
+form{display:flex;flex-direction:column;gap:1.5rem}
+.field-group{display:flex;flex-direction:column;gap:6px}
+.field-label{font-size:13px;font-weight:600;color:var(--ink)}
+.field-label .opt{font-weight:400;color:var(--ink-faint);font-size:12px}
+input[type="text"],
+input[type="email"],
+textarea{
+  padding:12px 15px;border:1px solid var(--line);border-radius:3px;
+  font-family:inherit;font-size:14.5px;color:var(--ink);
+  background:#fff;outline:none;width:100%;min-width:0;
+}
+input:focus, textarea:focus{border-color:var(--navy)}
+textarea{resize:vertical;min-height:110px}
+
+/* ===== Custom dropdown (replaces native <select> to avoid native-popup rendering issues) ===== */
+.custom-select{position:relative}
+.custom-select-btn{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:12px 15px;border:1px solid var(--line);border-radius:3px;
+  background:#fff;font-family:inherit;font-size:14.5px;color:var(--ink);
+  cursor:pointer;text-align:left;
+}
+html[dir="rtl"] .custom-select-btn{text-align:right}
+.custom-select-btn:hover{border-color:var(--ink-faint)}
+.custom-select.open .custom-select-btn{border-color:var(--navy)}
+.custom-select-btn svg{flex-shrink:0;color:var(--ink-faint);transition:transform .15s}
+.custom-select.open .custom-select-btn svg{transform:rotate(180deg)}
+.custom-select-text{color:var(--ink-faint)}
+.custom-select-text.has-value{color:var(--ink)}
+
+.custom-select-list{
+  display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:50;
+  background:#fff;border:1px solid var(--line);border-radius:3px;
+  box-shadow:0 4px 16px rgba(0,0,0,0.08);max-height:240px;overflow-y:auto;
+}
+.custom-select.open .custom-select-list{display:block}
+.custom-select-opt{
+  padding:10px 15px;font-size:14px;color:var(--ink);cursor:pointer;
+}
+.custom-select-opt:hover{background:var(--paper)}
+.custom-select-opt.selected{background:var(--gold-soft);color:var(--navy);font-weight:500}
+
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
+@media(max-width:560px){.field-row{grid-template-columns:1fr}}
+
+.checkbox-row{display:flex;align-items:flex-start;gap:10px;padding:1rem 1.2rem;background:var(--panel);border:1px solid var(--line);border-radius:4px}
+.checkbox-row input[type="checkbox"]{width:17px;height:17px;accent-color:var(--navy);cursor:pointer;flex-shrink:0;margin-top:2px}
+.checkbox-row label{font-size:13.5px;color:var(--ink-soft);line-height:1.55;cursor:pointer}
+
+.submit-row{display:flex;flex-direction:column;gap:10px;margin-top:.5rem}
+.btn-submit{background:var(--navy);color:#fff;padding:14px;border-radius:3px;font-size:15px;font-weight:600;border:none;transition:background .15s}
+.btn-submit:hover{background:var(--navy-deep)}
+.submit-hint{font-size:12px;color:var(--ink-faint);text-align:center}
+
+.success-block{display:none;text-align:center;padding:3rem 1rem}
+.success-icon{width:56px;height:56px;border-radius:50%;background:var(--gold-soft);color:var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 1.3rem;font-size:26px}
+.success-title{font-family:var(--serif);font-size:24px;font-weight:600;margin-bottom:.8rem;letter-spacing:-0.4px}
+.success-text{font-size:14.5px;color:var(--ink-soft);line-height:1.7;max-width:440px;margin:0 auto 1.8rem}
+.success-text strong{color:var(--ink)}
+
+.snap-card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1.1rem 1.4rem;margin:0 auto 1.3rem;max-width:480px;text-align:left}
+html[dir="rtl"] .snap-card{text-align:right}
+.snap-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px;gap:1rem}
+.snap-row:last-child{border-bottom:none}
+.snap-key{color:var(--ink-faint);flex-shrink:0}
+.snap-val{color:var(--ink);font-weight:600;text-align:right}
+html[dir="rtl"] .snap-val{text-align:left}
+.snap-signals{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:1.2rem}
+.snap-chip{font-size:12px;padding:5px 12px;border-radius:99px;font-weight:500}
+.snap-chip.pos{background:#e8f5ec;color:#1f7a3d}
+.snap-chip.neu{background:var(--paper);color:var(--ink-soft);border:1px solid var(--line)}
+.snap-chip.warn{background:var(--gold-soft);color:var(--gold)}
+.snap-insight{font-size:14px;color:var(--ink-soft);line-height:1.7;max-width:480px;margin:0 auto 1.6rem;text-align:left}
+html[dir="rtl"] .snap-insight{text-align:right}
+
+.followup-box{display:flex;align-items:flex-start;gap:10px;background:var(--navy-deep);color:#cfdaea;border-radius:4px;padding:1.1rem 1.3rem;margin:0 auto 1.8rem;max-width:480px;text-align:left;font-size:13px;line-height:1.6}
+html[dir="rtl"] .followup-box{text-align:right}
+.followup-box svg{flex-shrink:0;margin-top:2px}
+.btn-back-home{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--navy);padding:11px 22px;border:1px solid var(--navy);border-radius:3px;font-size:13.5px;font-weight:500;text-decoration:none}
+.btn-back-home:hover{background:var(--navy);color:#fff}
+
+footer{padding:1.8rem 2rem;border-top:1px solid var(--line);text-align:center;background:var(--panel)}
+.footer-copy{font-size:12px;color:var(--ink-faint)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" onclick="return withLang(this)" class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none">
+        <circle cx="11" cy="16" r="7.5" stroke="#15171c" stroke-width="1"/>
+        <circle cx="21" cy="16" r="7.5" stroke="#a87f3f" stroke-width="1"/>
+      </svg>
+      <div class="brand-name">MENA Economic Intelligence Group</div>
+    </a>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">
+      <span data-en>العربية</span><span data-ar>English</span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div id="formBlock">
+    <a href="index.html" onclick="return withLang(this)" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4l-3 3 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-en>Back to homepage</span><span data-ar>العودة للصفحة الرئيسية</span>
+    </a>
+
+    <div class="page-eyebrow"><span data-en>Get started</span><span data-ar>ابدأ الآن</span></div>
+    <h1 class="page-title"><span data-en>Request your assessment</span><span data-ar>اطلب تقييمك</span></h1>
+    <p class="page-sub">
+      <span data-en>Tell us about your idea or project. We'll review your submission and reply within 24 hours.</span>
+      <span data-ar>أخبرنا عن فكرتك أو مشروعك. سنراجع طلبك ونرد عليك خلال 24 ساعة.</span>
+    </p>
+
+    <div class="free-note">
+      <svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="8.5" cy="8.5" r="7" stroke="#1f3a5f" stroke-width="1.3"/><path d="M8.5 5.5v3.5l2.3 1.3" stroke="#1f3a5f" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <span data-en>Every engagement begins with an initial assessment to understand your idea.</span>
+        <span data-ar>كل مشروع يبدأ بتقييم أولي لفهم فكرتك.</span>
+      </div>
+    </div>
+
+    <form onsubmit="return false;">
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="fName"><span data-en>Your name</span><span data-ar>اسمك</span></label>
+          <input type="text" id="fName" name="fName" autocomplete="name">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="fEmail"><span data-en>Email address</span><span data-ar>البريد الإلكتروني</span></label>
+          <input type="email" id="fEmail" name="fEmail" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="fIdea"><span data-en>Describe your idea or project</span><span data-ar>صف فكرتك أو مشروعك</span></label>
+        <textarea id="fIdea" name="fIdea" data-ph-en="What is it, and what problem does it solve?" data-ph-ar="ما هي الفكرة، وما المشكلة التي تحلّها؟"></textarea>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" id="fSectorLabel"><span data-en>Sector</span><span data-ar>القطاع</span></label>
+          <div class="custom-select" id="fSectorWrap" data-value="">
+            <button type="button" class="custom-select-btn" id="fSectorBtn" aria-haspopup="listbox" aria-expanded="false" onclick="toggleDropdown('fSector')">
+              <span class="custom-select-text" id="fSectorText" data-ph-en="Select a sector" data-ph-ar="اختر القطاع">Select a sector</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="custom-select-list" id="fSectorList" role="listbox">
+              <div class="custom-select-opt" data-value="Manufacturing" data-en="Manufacturing" data-ar="الصناعة التحويلية" onclick="selectOption('fSector', this)">Manufacturing</div>
+              <div class="custom-select-opt" data-value="Technology" data-en="Technology" data-ar="التقنية" onclick="selectOption('fSector', this)">Technology</div>
+              <div class="custom-select-opt" data-value="Retail &amp; F&amp;B" data-en="Retail &amp; F&amp;B" data-ar="التجزئة والمطاعم" onclick="selectOption('fSector', this)">Retail &amp; F&amp;B</div>
+              <div class="custom-select-opt" data-value="Real Estate" data-en="Real Estate" data-ar="العقار" onclick="selectOption('fSector', this)">Real Estate</div>
+              <div class="custom-select-opt" data-value="Logistics" data-en="Logistics" data-ar="اللوجستيات" onclick="selectOption('fSector', this)">Logistics</div>
+              <div class="custom-select-opt" data-value="Healthcare" data-en="Healthcare" data-ar="الرعاية الصحية" onclick="selectOption('fSector', this)">Healthcare</div>
+              <div class="custom-select-opt" data-value="Energy" data-en="Energy" data-ar="الطاقة" onclick="selectOption('fSector', this)">Energy</div>
+              <div class="custom-select-opt" data-value="Finance" data-en="Finance" data-ar="المالية" onclick="selectOption('fSector', this)">Finance</div>
+              <div class="custom-select-opt" data-value="Education" data-en="Education" data-ar="التعليم" onclick="selectOption('fSector', this)">Education</div>
+              <div class="custom-select-opt" data-value="Other" data-en="Other" data-ar="أخرى" onclick="selectOption('fSector', this)">Other</div>
+            </div>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label" id="fServiceLabel"><span data-en>Service of interest</span><span data-ar>الخدمة المطلوبة</span></label>
+          <div class="custom-select" id="fServiceWrap" data-value="">
+            <button type="button" class="custom-select-btn" id="fServiceBtn" aria-haspopup="listbox" aria-expanded="false" onclick="toggleDropdown('fService')">
+              <span class="custom-select-text" id="fServiceText" data-ph-en="Select a service" data-ph-ar="اختر الخدمة">Select a service</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="custom-select-list" id="fServiceList" role="listbox">
+              <div class="custom-select-opt" data-value="Idea Readiness Check" data-en="Idea Readiness Check" data-ar="فحص جاهزية الفكرة" onclick="selectOption('fService', this)">Idea Readiness Check</div>
+              <div class="custom-select-opt" data-value="Investment Readiness Study" data-en="Investment Readiness Study" data-ar="دراسة جاهزية الاستثمار" onclick="selectOption('fService', this)">Investment Readiness Study</div>
+              <div class="custom-select-opt" data-value="Acquisition Review" data-en="Acquisition Review" data-ar="مراجعة الاستحواذ" onclick="selectOption('fService', this)">Acquisition Review</div>
+              <div class="custom-select-opt" data-value="Strategic Brief" data-en="Strategic Brief" data-ar="الموجز الاستراتيجي" onclick="selectOption('fService', this)">Strategic Brief</div>
+              <div class="custom-select-opt" data-value="Not sure yet" data-en="Not sure yet" data-ar="لست متأكداً بعد" onclick="selectOption('fService', this)">Not sure yet</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="fCity"><span data-en>City</span><span data-ar>المدينة</span></label>
+          <input type="text" id="fCity" name="fCity" autocomplete="address-level2">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="fCountry"><span data-en>Country</span><span data-ar>الدولة</span></label>
+          <input type="text" id="fCountry" name="fCountry" autocomplete="country-name">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="fNotes"><span data-en>Additional notes <span class="opt">(optional)</span></span><span data-ar>ملاحظات إضافية <span class="opt">(اختياري)</span></span></label>
+        <textarea id="fNotes" name="fNotes" data-ph-en="Anything else that helps us understand your request..." data-ph-ar="أي شيء آخر يساعدنا على فهم طلبك بشكل أفضل..."></textarea>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="fNewsletter" checked>
+        <label for="fNewsletter">
+          <span data-en>Subscribe me to the MEIG Intelligence Brief — quarterly economic reports on the MENA region.</span>
+          <span data-ar>أرغب بالاشتراك في نشرة MEIG الاقتصادية — تقارير اقتصادية ربع سنوية عن منطقة الشرق الأوسط وشمال أفريقيا.</span>
+        </label>
+      </div>
+
+      <div class="submit-row">
+        <button class="btn-submit" onclick="submitRequestForm()">
+          <span data-en>Send request</span><span data-ar>إرسال الطلب</span>
+        </button>
+        <div class="submit-hint">
+          <span data-en>We typically reply within 24 hours.</span>
+          <span data-ar>نرد عادةً خلال 24 ساعة.</span>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="success-block" id="successBlock">
+    <div class="success-icon">✓</div>
+    <div class="success-title"><span data-en>Here's your idea snapshot</span><span data-ar>إليك لمحة عن فكرتك</span></div>
+    <div class="success-text" style="margin-bottom:1.6rem">
+      <span data-en>A structured first read based on what you shared — not a full analysis.</span>
+      <span data-ar>قراءة أولية منظمة بناءً على ما شاركتنا به — وليست تحليلاً كاملاً.</span>
+    </div>
+
+    <div class="snap-card">
+      <div class="snap-row"><span class="snap-key"><span data-en>Sector</span><span data-ar>القطاع</span></span><span class="snap-val" id="snapSector">—</span></div>
+      <div class="snap-row"><span class="snap-key"><span data-en>Service of interest</span><span data-ar>الخدمة المطلوبة</span></span><span class="snap-val" id="snapService">—</span></div>
+      <div class="snap-row"><span class="snap-key"><span data-en>Location</span><span data-ar>الموقع</span></span><span class="snap-val" id="snapLocation">—</span></div>
+    </div>
+
+    <div class="snap-signals" id="snapSignals"></div>
+    <div class="snap-insight" id="snapInsight"></div>
+
+    <div class="followup-box">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2.5 5l6.5 5 6.5-5M3 4h12c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1z" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <span data-en>This is an automated first read. A member of our team will also follow up by email with additional thoughts on your specific request.</span>
+        <span data-ar>هذه قراءة آلية أولى. سيتواصل معك أحد فريقنا أيضاً عبر البريد الإلكتروني بملاحظات إضافية حول طلبك تحديداً.</span>
+      </div>
+    </div>
+
+    <a href="index.html" onclick="return withLang(this)" class="btn-back-home">
+      <span data-en>Back to homepage</span><span data-ar>العودة للصفحة الرئيسية</span>
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-copy">© 2026 MENA Economic Intelligence Group</div>
+</footer>
+
+<script>
+function updatePlaceholders(){
+  const isAr = document.documentElement.dir === 'rtl';
+  document.querySelectorAll('[data-ph-en]').forEach(el=>{
+    el.placeholder = isAr ? el.getAttribute('data-ph-ar') : el.getAttribute('data-ph-en');
+  });
+  // Update custom dropdown option text and placeholder text for the active language
+  document.querySelectorAll('.custom-select-opt[data-en]').forEach(opt=>{
+    const en = opt.getAttribute('data-en');
+    const ar = opt.getAttribute('data-ar');
+    if(en && ar) opt.textContent = isAr ? ar : en;
+  });
+  document.querySelectorAll('.custom-select-text[data-ph-en]').forEach(el=>{
+    const en = el.getAttribute('data-ph-en');
+    const ar = el.getAttribute('data-ph-ar');
+    if(!en || !ar) return;
+    if(el.classList.contains('has-value')){
+      // A value is selected — find the matching selected option and show its translated label
+      const wrap = el.closest('.custom-select');
+      const selectedOpt = wrap ? wrap.querySelector('.custom-select-opt.selected') : null;
+      if(selectedOpt){
+        el.textContent = isAr ? selectedOpt.getAttribute('data-ar') : selectedOpt.getAttribute('data-en');
+      }
+    } else {
+      // No value selected yet — just show the translated placeholder
+      el.textContent = isAr ? ar : en;
+    }
+  });
+}
+
+/* ===== Custom dropdown component ===== */
+function toggleDropdown(fieldId){
+  const wrap = document.getElementById(fieldId + 'Wrap');
+  const isOpen = wrap.classList.contains('open');
+  // close any other open dropdown first
+  document.querySelectorAll('.custom-select.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.custom-select-btn').setAttribute('aria-expanded', 'false');
+  });
+  if(!isOpen){
+    wrap.classList.add('open');
+    wrap.querySelector('.custom-select-btn').setAttribute('aria-expanded', 'true');
+  }
+}
+
+function selectOption(fieldId, optEl){
+  const wrap = document.getElementById(fieldId + 'Wrap');
+  const textEl = document.getElementById(fieldId + 'Text');
+  const isAr = document.documentElement.dir === 'rtl';
+
+  const value = optEl.getAttribute('data-value');
+  const en = optEl.getAttribute('data-en');
+  const ar = optEl.getAttribute('data-ar');
+
+  wrap.setAttribute('data-value', value);
+  textEl.textContent = isAr ? ar : en;
+  textEl.classList.add('has-value');
+
+  wrap.querySelectorAll('.custom-select-opt').forEach(o => o.classList.remove('selected'));
+  optEl.classList.add('selected');
+
+  wrap.classList.remove('open');
+  wrap.querySelector('.custom-select-btn').setAttribute('aria-expanded', 'false');
+}
+
+function getDropdownValue(fieldId){
+  return document.getElementById(fieldId + 'Wrap').getAttribute('data-value') || '';
+}
+
+function getDropdownLabel(fieldId){
+  const isAr = document.documentElement.dir === 'rtl';
+  const wrap = document.getElementById(fieldId + 'Wrap');
+  const value = wrap.getAttribute('data-value');
+  if(!value) return isAr ? 'غير محدد' : 'Not specified';
+  const selectedOpt = wrap.querySelector('.custom-select-opt.selected');
+  if(!selectedOpt) return isAr ? 'غير محدد' : 'Not specified';
+  return isAr ? selectedOpt.getAttribute('data-ar') : selectedOpt.getAttribute('data-en');
+}
+
+// Close any open dropdown when clicking outside of it
+document.addEventListener('click', function(e){
+  document.querySelectorAll('.custom-select.open').forEach(wrap => {
+    if(!wrap.contains(e.target)){
+      wrap.classList.remove('open');
+      wrap.querySelector('.custom-select-btn').setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+
+function toggleLang(){
+  const html = document.documentElement;
+  if(html.dir === 'rtl'){
+    html.dir = 'ltr'; html.lang = 'en';
+  } else {
+    html.dir = 'rtl'; html.lang = 'ar';
+  }
+  updatePlaceholders();
+}
+
+/* Carry current language to the next page via a URL parameter (works reliably even with local files) */
+function withLang(linkEl){
+  const isAr = document.documentElement.dir === 'rtl';
+  const baseHref = linkEl.getAttribute('href').split('?')[0];
+  linkEl.href = baseHref + (isAr ? '?lang=ar' : '?lang=en');
+  return true;
+}
+
+/* On load, read ?lang= from the URL and apply it before anything else paints */
+(function initLangFromUrl(){
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get('lang');
+  if(lang === 'ar'){
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else if(lang === 'en'){
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+})();
+
+function submitRequestForm(){
+  const name = document.getElementById('fName').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  const idea = document.getElementById('fIdea').value.trim();
+  const sector = getDropdownValue('fSector');
+  const service = getDropdownValue('fService');
+  const city = document.getElementById('fCity').value.trim();
+  const country = document.getElementById('fCountry').value.trim();
+  const notes = document.getElementById('fNotes').value.trim();
+  const newsletter = document.getElementById('fNewsletter').checked;
+  const isAr = document.documentElement.dir === 'rtl';
+
+  if(!name || !email.includes('@') || idea.length < 3){
+    alert(isAr ? 'الرجاء إدخال اسمك وبريدك الإلكتروني ووصف فكرتك على الأقل.' : 'Please enter at least your name, email, and a description of your idea.');
+    return;
+  }
+
+  const sectorLabel = getDropdownLabel('fSector');
+  const serviceLabel = getDropdownLabel('fService');
+
+  let body = 'Name: ' + name + '%0AEmail: ' + email;
+  body += '%0AIdea: ' + encodeURIComponent(idea);
+  body += '%0ASector: ' + encodeURIComponent(sectorLabel);
+  body += '%0AService: ' + encodeURIComponent(serviceLabel);
+  if(city) body += '%0ACity: ' + encodeURIComponent(city);
+  if(country) body += '%0ACountry: ' + encodeURIComponent(country);
+  if(notes) body += '%0ANotes: ' + encodeURIComponent(notes);
+  body += '%0ANewsletter opt-in: ' + (newsletter ? 'Yes' : 'No');
+
+  const mailtoUrl = 'mailto:info@meiggroup.com?subject=' + encodeURIComponent('New Assessment Request — ' + name) + '&body=' + body;
+  const link = document.createElement('a');
+  link.href = mailtoUrl;
+  link.click();
+
+  // ===== Populate the on-page snapshot =====
+  document.getElementById('snapSector').textContent = sectorLabel;
+  document.getElementById('snapService').textContent = serviceLabel;
+  const locationText = [city, country].filter(Boolean).join(', ');
+  document.getElementById('snapLocation').textContent = locationText || (isAr ? 'غير محدد' : 'Not specified');
+
+  const highGrowth = ['Technology','Logistics','Energy','Healthcare'];
+  const signals = [];
+
+  signals.push(highGrowth.includes(sector)
+    ? {type:'pos', en:'High-growth sector', ar:'قطاع عالي النمو'}
+    : {type:'neu', en:'Established sector', ar:'قطاع راسخ'});
+
+  signals.push(idea.length > 80
+    ? {type:'pos', en:'Well-defined concept', ar:'فكرة محددة بوضوح'}
+    : {type:'neu', en:'Early-stage concept', ar:'فكرة في مرحلة مبكرة'});
+
+  signals.push({type:'warn', en:'Market validation needed', ar:'يحتاج تحقق من السوق'});
+
+  document.getElementById('snapSignals').innerHTML = signals.map(s =>
+    `<span class="snap-chip ${s.type}">${isAr ? s.ar : s.en}</span>`
+  ).join('');
+
+  const insight = isAr
+    ? 'بناءً على ما شاركتنا به، الخطوة الأولى المنطقية هي التحقق من الطلب الفعلي في السوق المستهدف قبل أي التزام مالي إضافي. سيراجع فريقنا التفاصيل ويرسل لك ملاحظات أكثر تحديداً.'
+    : 'Based on what you shared, the logical first step is validating real demand in your target market before any further financial commitment. Our team will review the details and follow up with more specific feedback.';
+  document.getElementById('snapInsight').textContent = insight;
+
+  document.getElementById('formBlock').style.display = 'none';
+  document.getElementById('successBlock').style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+updatePlaceholders();
+</script>
+</body>
+</html>

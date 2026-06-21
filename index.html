@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MENA Economic Intelligence Group</title>
+<meta name="description" content="MENA Economic Intelligence Group is an economic advisory practice for investors, entrepreneurs, and institutions across the region — built on deep regional understanding and sharp economic judgment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171c;
+  --ink-soft:#4a4f59;
+  --ink-faint:#8d92a0;
+  --paper:#fbfaf7;
+  --panel:#ffffff;
+  --line:#e4e1da;
+  --navy:#1f3a5f;
+  --navy-deep:#13243d;
+  --gold:#a87f3f;
+  --gold-soft:#f3ead9;
+  --serif:'Source Serif 4', Georgia, serif;
+  --sans:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --arserif:'Noto Naskh Arabic', serif;
+  --arsans:'Noto Kufi Arabic', sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 2.5rem}
+
+/* ===== RTL SWITCH ===== */
+html[dir="rtl"] body{font-family:var(--arsans)}
+html[dir="rtl"] .headline,
+html[dir="rtl"] .s-title,
+html[dir="rtl"] .free-title,
+html[dir="rtl"] .svc-title,
+html[dir="rtl"] .report-title,
+html[dir="rtl"] .nl-title,
+html[dir="rtl"] .cta-title,
+html[dir="rtl"] .footer-name,
+html[dir="rtl"] .report-spine-q{font-family:var(--arserif)}
+html[dir="rtl"] .brand-name{font-family:var(--arserif)}
+html[dir="rtl"] .proc-num,
+html[dir="rtl"] .svc-num{font-family:var(--arserif);font-style:normal}
+html[dir="rtl"] .accent{font-style:normal}
+html[dir="rtl"] .nav-cta,
+html[dir="rtl"] .kicker,
+html[dir="rtl"] .eyebrow{letter-spacing:0}
+html[dir="rtl"] .btn-fill svg,
+html[dir="rtl"] .btn-on-navy svg{transform:scaleX(-1)}
+
+/* language toggle text visibility — scoped strictly to translation span pairs, never matches other elements that merely happen to carry data-en/data-ar */
+span[data-ar]{display:none}
+html[dir="rtl"] span[data-en]{display:none}
+html[dir="rtl"] span[data-ar]{display:inline}
+html[dir="rtl"] div[data-ar].translate-block,
+html[dir="rtl"] p[data-ar],
+html[dir="rtl"] span.block-ar{display:block}
+.lang-btn{background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-size:12.5px;font-weight:500;padding:7px 13px;border-radius:3px;display:inline-flex;align-items:center;gap:5px;transition:all .15s}
+.lang-btn:hover{border-color:var(--ink-faint);color:var(--ink)}
+
+/* ============ NAV ============ */
+nav{position:sticky;top:0;z-index:100;background:rgba(251,250,247,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-mark{width:30px;height:30px;flex-shrink:0}
+.brand-name{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.2px;line-height:1.2}
+.brand-tag{font-size:9.5px;color:var(--ink-faint);letter-spacing:1.4px;text-transform:uppercase;margin-top:1px}
+html[dir="rtl"] .brand-tag{letter-spacing:0}
+.nav-links{display:flex;align-items:center;gap:1.8rem}
+.nav-links a{font-size:13.5px;color:var(--ink-soft);text-decoration:none;transition:color .15s;white-space:nowrap}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--navy);color:#fff!important;padding:9px 18px;border-radius:3px;font-size:13px;font-weight:500;transition:background .15s}
+.nav-cta:hover{background:var(--navy-deep)}
+.nav-toggle{display:none;background:none;border:none}
+.nav-right{display:flex;align-items:center;gap:1.2rem}
+@media(max-width:900px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);flex-direction:column;align-items:flex-start;padding:1.5rem 2rem;border-bottom:1px solid var(--line);gap:1.1rem}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:block}
+}
+
+/* ============ HERO ============ */
+.hero{border-bottom:1px solid var(--line)}
+.hero-inner{max-width:1180px;margin:0 auto;padding:5.5rem 2.5rem 4rem}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:2rem;font-weight:500}
+.kicker::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+h1.headline{font-family:var(--serif);font-size:clamp(34px,5.2vw,56px);font-weight:600;line-height:1.12;letter-spacing:-1.3px;max-width:680px;margin-bottom:1.6rem}
+html[dir="rtl"] h1.headline{letter-spacing:0;line-height:1.35}
+h1.headline .accent{font-style:italic;color:var(--navy)}
+.hero-sub{font-size:16.5px;color:var(--ink-soft);line-height:1.7;max-width:480px;margin-bottom:2.6rem}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:3.5rem}
+.btn-fill{background:var(--navy);color:#fff;padding:13px 26px;border-radius:3px;font-size:14px;font-weight:500;border:none;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:background .15s}
+.btn-fill:hover{background:var(--navy-deep)}
+.btn-line{background:transparent;color:var(--ink);padding:13px 26px;border-radius:3px;font-size:14px;font-weight:500;border:1px solid var(--ink);display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .15s}
+.btn-line:hover{background:var(--ink);color:#fff}
+.hero-stats{display:grid;grid-template-columns:repeat(4,auto);gap:3rem;padding-top:2.4rem;border-top:1px solid var(--line)}
+.hero-reassure{font-size:13px;color:var(--ink-faint);margin-top:.9rem}
+.hero-reassure::before{content:'✓ ';color:var(--gold)}
+.stat-num{font-family:var(--serif);font-size:23px;font-weight:600;letter-spacing:-0.4px;color:var(--navy)}
+html[dir="rtl"] .stat-num{font-family:var(--arserif)}
+.stat-label{font-size:11.5px;color:var(--ink-faint);margin-top:3px}
+@media(max-width:700px){.hero-stats{grid-template-columns:repeat(2,1fr);gap:1.8rem}}
+
+/* ============ SECTION SHELL ============ */
+section{border-bottom:1px solid var(--line)}
+.section-pad{padding:4.5rem 0}
+.alt{background:var(--panel)}
+.eyebrow{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.7rem}
+.s-title{font-family:var(--serif);font-size:29px;font-weight:600;letter-spacing:-0.5px;margin-bottom:.8rem}
+.s-sub{font-size:14.5px;color:var(--ink-soft);max-width:480px;line-height:1.65;margin-bottom:2.6rem}
+
+/* ============ FREE BANNER ============ */
+.free-banner{background:var(--navy);color:#fff;border-radius:4px;padding:1.8rem 2.2rem;margin-bottom:2.2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.free-tag{display:inline-block;background:var(--gold);color:var(--navy-deep);font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:99px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+html[dir="rtl"] .free-tag{letter-spacing:0}
+.free-title{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:4px}
+.free-desc{font-size:13.5px;color:#d6deea;max-width:420px;line-height:1.5}
+.btn-on-navy{background:#fff;color:var(--navy);padding:11px 22px;border-radius:3px;font-size:13.5px;font-weight:600;border:none;display:inline-flex;align-items:center;gap:7px;text-decoration:none;flex-shrink:0;transition:opacity .15s}
+.btn-on-navy:hover{opacity:.88}
+
+/* ============ SERVICES ============ */
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc-card{background:var(--panel);padding:1.8rem 1.6rem;display:flex;flex-direction:column;gap:10px;position:relative;text-decoration:none;color:inherit;transition:background .15s}
+.svc-card:hover{background:var(--gold-soft)}
+.svc-card.featured:hover{background:var(--gold-soft)}
+.svc-free-note{font-size:11.5px;color:var(--gold);margin-top:3px;font-weight:500}
+.svc-card.featured{background:var(--gold-soft)}
+.svc-flag{position:absolute;top:0;inset-inline-end:0;background:var(--gold);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:0 0 0 4px}
+html[dir="rtl"] .svc-flag{border-radius:0 0 4px 0;letter-spacing:0}
+.svc-num{font-family:var(--serif);font-size:13px;color:var(--ink-faint);font-style:italic}
+.svc-title{font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:-0.2px}
+.svc-desc{font-size:13px;color:var(--ink-soft);line-height:1.55;flex:1}
+.svc-meta{border-top:1px solid var(--line);padding-top:12px;margin-top:6px}
+.svc-price{font-size:14.5px;font-weight:600;color:var(--navy)}
+.svc-days{font-size:12px;color:var(--ink-faint);margin-top:2px}
+@media(max-width:900px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.svc-grid{grid-template-columns:1fr}}
+
+.pricing-note{margin-top:1.5rem;padding:1.3rem 1.6rem;background:var(--panel);border:1px solid var(--line);border-inline-start:3px solid var(--gold);font-size:13.5px;color:var(--ink-soft);line-height:1.65}
+.pricing-note strong{color:var(--ink);font-weight:600}
+
+/* ============ PROCESS ============ */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:.5rem}
+.proc-step{position:relative;padding-top:1.5rem;border-top:2px solid var(--navy)}
+.proc-num{font-family:var(--serif);font-size:34px;font-weight:600;color:var(--gold);font-style:italic;line-height:1;margin-bottom:.9rem}
+.proc-title{font-size:14.5px;font-weight:600;margin-bottom:6px}
+.proc-desc{font-size:13px;color:var(--ink-soft);line-height:1.6}
+@media(max-width:900px){.process-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.process-grid{grid-template-columns:1fr}}
+
+/* ============ WHY ============ */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.why-card{background:var(--panel);padding:1.8rem 1.5rem}
+.why-title{font-size:14.5px;font-weight:600;margin-bottom:8px}
+.why-desc{font-size:13px;color:var(--ink-soft);line-height:1.6}
+@media(max-width:900px){.why-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.why-grid{grid-template-columns:1fr}}
+
+/* ============ RESEARCH ============ */
+.report-feature{background:var(--panel);border:1px solid var(--line);display:flex;gap:0;margin-bottom:2.2rem;overflow:hidden}
+.report-spine{width:130px;background:var(--navy-deep);color:#fff;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:1.5rem;text-align:center}
+.report-spine-q{font-family:var(--serif);font-size:30px;font-style:italic;font-weight:600;color:var(--gold)}
+html[dir="rtl"] .report-spine-q{font-style:normal}
+.report-spine-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9fb0c7}
+.report-content{padding:1.8rem 2rem;flex:1}
+.report-tag{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.report-title{font-family:var(--serif);font-size:21px;font-weight:600;letter-spacing:-0.3px;margin-bottom:.7rem}
+.report-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.65;margin-bottom:1.1rem;max-width:560px}
+.report-meta{display:flex;gap:1.3rem;font-size:12px;color:var(--ink-faint);margin-bottom:1rem;flex-wrap:wrap}
+.report-topics{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.4rem}
+.topic-chip{font-size:11px;color:var(--navy);background:var(--gold-soft);padding:4px 10px;border-radius:99px;border:1px solid #e9dcc4}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-dl{background:var(--navy);color:#fff;padding:10px 20px;border-radius:3px;font-size:13px;font-weight:500;border:none;display:inline-flex;align-items:center;gap:7px;transition:background .15s}
+.btn-dl:hover{background:var(--navy-deep)}
+.btn-outline{background:transparent;color:var(--ink-soft);padding:10px 18px;border-radius:3px;font-size:13px;border:1px solid var(--line);display:inline-flex;align-items:center;gap:7px;transition:border-color .15s}
+.btn-outline:hover{border-color:var(--ink-faint)}
+@media(max-width:700px){.report-feature{flex-direction:column}.report-spine{width:100%;flex-direction:row;padding:1rem}}
+
+.coming-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.coming-card{background:var(--panel);padding:1.4rem 1.5rem;opacity:.65}
+.coming-label{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.5rem}
+.coming-title{font-size:13.5px;font-weight:600;margin-bottom:.4rem}
+.coming-date{font-size:12px;color:var(--ink-faint)}
+@media(max-width:700px){.coming-row{grid-template-columns:1fr}}
+
+/* ============ NEWSLETTER ============ */
+.nl-box{background:var(--navy-deep);color:#fff;padding:2.6rem;display:grid;grid-template-columns:1.1fr 1fr;gap:2.5rem}
+.nl-title{font-family:var(--serif);font-size:22px;font-weight:600;margin-bottom:.6rem}
+.nl-sub{font-size:13.5px;color:#aebbcf;line-height:1.6;margin-bottom:1.3rem}
+.nl-perk{font-size:13px;color:#d6deea;padding:6px 0;border-top:1px solid rgba(255,255,255,0.1)}
+.nl-perk:first-child{border-top:none}
+.nl-perk::before{content:'— ';color:var(--gold)}
+.nl-form{display:flex;flex-direction:column;gap:10px;align-self:center}
+.nl-form input{padding:12px 15px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);border-radius:3px;font-family:inherit;font-size:14px;color:#fff;outline:none}
+.nl-form input::placeholder{color:#7c8aa3}
+.nl-form input:focus{border-color:var(--gold)}
+.nl-submit{background:var(--gold);color:var(--navy-deep);padding:12px;border-radius:3px;font-size:14px;font-weight:600;border:none}
+.nl-note{font-size:11px;color:#7c8aa3;text-align:center}
+.nl-success{display:none;font-size:13.5px;color:#d6deea;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);padding:1rem 1.2rem;border-radius:4px;align-items:center;gap:8px}
+@media(max-width:760px){.nl-box{grid-template-columns:1fr}}
+
+/* ============ CTA ============ */
+.cta-pad{padding:5.5rem 0;text-align:center}
+.cta-title{font-family:var(--serif);font-size:32px;font-weight:600;letter-spacing:-0.6px;margin-bottom:.9rem}
+.cta-sub{font-size:15px;color:var(--ink-soft);margin-bottom:2rem;max-width:440px;margin-left:auto;margin-right:auto}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ============ FOOTER ============ */
+footer{padding:2.2rem 0;background:var(--navy-deep);color:#9fb0c7}
+.footer-inner{max-width:1180px;margin:0 auto;padding:0 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-name{font-family:var(--serif);font-size:14px;font-weight:600;color:#fff}
+.footer-abbr{font-size:10px;color:#7c8aa3;letter-spacing:1px;margin-top:2px}
+.footer-links{display:flex;gap:1.8rem}
+.footer-links a{font-size:12.5px;color:#9fb0c7;text-decoration:none}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:12px;color:#7c8aa3}
+@media(max-width:700px){.footer-inner{flex-direction:column;text-align:center}}
+
+/* ============ MODAL ============ */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(19,36,61,0.6);z-index:300;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal{background:var(--paper);max-width:420px;width:100%;padding:2.2rem;border-radius:4px}
+.modal-title{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:.6rem}
+.modal-sub{font-size:13.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:1.5rem}
+.modal-form{display:flex;flex-direction:column;gap:10px}
+.modal-form input{padding:12px 15px;border:1px solid var(--line);border-radius:3px;font-family:inherit;font-size:14px;outline:none}
+.modal-form input:focus{border-color:var(--navy)}
+.modal-submit{background:var(--navy);color:#fff;padding:12px;border-radius:3px;font-size:14px;font-weight:600;border:none;transition:background .15s}
+.modal-submit:hover{background:var(--navy-deep)}
+.modal-cancel{background:none;border:none;color:var(--ink-faint);font-size:13px;text-align:center;padding:6px}
+.modal-note{font-size:11px;color:var(--ink-faint);text-align:center}
+
+/* ============ REQUEST MODAL ============ */
+.req-modal{max-width:460px}
+.req-form{display:flex;flex-direction:column;gap:10px}
+.req-form textarea{padding:12px 15px;border:1px solid var(--line);border-radius:3px;font-family:inherit;font-size:14px;outline:none;resize:vertical;min-height:80px}
+.req-form textarea:focus{border-color:var(--navy)}
+.req-success{display:none;text-align:center;padding:1rem 0}
+.req-success-icon{width:48px;height:48px;border-radius:50%;background:var(--gold-soft);color:var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:22px}
+.req-success-title{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:.5rem}
+html[dir="rtl"] .req-success-title{font-family:var(--arserif)}
+.req-success-text{font-size:13.5px;color:var(--ink-soft);line-height:1.6}
+
+.req-radio-group{display:flex;flex-direction:column;gap:7px;border:1px solid var(--line);border-radius:4px;padding:10px 12px;margin:2px 0}
+.req-radio{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--ink-soft);cursor:pointer;padding:4px 0}
+.req-radio input[type="radio"]{width:15px;height:15px;accent-color:var(--navy);cursor:pointer;flex-shrink:0}
+.req-radio:has(input:checked){color:var(--ink);font-weight:600}
+
+@media(max-width:600px){.wrap,.hero-inner,.section-pad .wrap{padding-left:1.3rem;padding-right:1.3rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none">
+        <circle cx="11" cy="16" r="7.5" stroke="#15171c" stroke-width="1"/>
+        <circle cx="21" cy="16" r="7.5" stroke="#a87f3f" stroke-width="1"/>
+      </svg>
+      <div>
+        <div class="brand-name">MENA Economic Intelligence Group</div>
+        <div class="brand-tag"><span data-en>Economic Advisory · MEIG</span><span data-ar>استشارات اقتصادية · MEIG</span></div>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#services"><span data-en>Services</span><span data-ar>الخدمات</span></a>
+      <a href="#research"><span data-en>Research</span><span data-ar>الأبحاث</span></a>
+      <a href="#how"><span data-en>How it works</span><span data-ar>آلية العمل</span></a>
+      <a href="request.html" onclick="return withLang(this)" class="nav-cta"><span data-en>Get started</span><span data-ar>ابدأ الآن</span></a>
+    </div>
+    <div class="nav-right">
+      <button class="lang-btn" onclick="toggleLang()" id="langBtn">
+        <span data-en>العربية</span><span data-ar>English</span>
+      </button>
+      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="#15171c" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="kicker">
+      <span data-en>Senior Economic Expertise · MENA</span>
+      <span data-ar>خبرة اقتصادية رفيعة · المنطقة</span>
+    </div>
+    <h1 class="headline">
+      <span data-en>Depth changes<br><span class="accent">the decision.</span></span>
+      <span data-ar>العمق يغيّر<br><span class="accent">القرار.</span></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-en>We are an economic advisory practice that understands both our clients and the markets they invest in. We employ our depth of knowledge alongside sharp economic judgment to support our clients' investment decisions — revealing reality from a different angle, one that offers the broader view across all their future choices.</span>
+      <span data-ar>نحن مجموعة استشارية اقتصادية نفهم عميلنا ونفهم السوق الذي يستثمر فيه حيث نوظف عمقنا المعرفي مع مهارات الذكاء الاقتصادي لندعم قرارات عملائنا الاستثمارية لنحقق لهم رؤية الواقع من زاوية نظر مختلفة توفر لهم الرؤية الواسعة لكل خياراتهم المستقبلية</span>
+    </p>
+    <div class="hero-actions">
+      <a href="request.html" onclick="return withLang(this)" class="btn-fill">
+        <span data-en>Request an assessment</span><span data-ar>اطلب تقييماً</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="hero-reassure">
+      <span data-en>Get an initial assessment to understand your idea.</span>
+      <span data-ar>احصل على تقييم أولي لفهم فكرتك.</span>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num"><span data-en>3–7</span><span data-ar>3-7</span></div><div class="stat-label"><span data-en>Days to delivery</span><span data-ar>أيام للتسليم</span></div></div>
+      <div><div class="stat-num"><span data-en>Senior-led</span><span data-ar>تحليل معمّق</span></div><div class="stat-label"><span data-en>Analysis</span><span data-ar>بإشراف خبراء</span></div></div>
+      <div><div class="stat-num">MENA</div><div class="stat-label"><span data-en>Regional focus</span><span data-ar>تركيز إقليمي لمنطقة الشرق الأوسط وشمال أفريقيا</span></div></div>
+      <div><div class="stat-num">360°</div><div class="stat-label"><span data-en>Market view</span><span data-ar>رؤية شاملة</span></div></div>
+    </div>
+  </div>
+</div>
+
+<section class="alt" id="services">
+  <div class="section-pad wrap">
+    <div class="eyebrow"><span data-en>Services</span><span data-ar>الخدمات</span></div>
+    <div class="s-title"><span data-en>What we deliver</span><span data-ar>ماذا نقدّم</span></div>
+    <p class="s-sub">
+      <span data-en>Every service we provide is built on a real understanding of our client's request from the very beginning — and they will know exactly what they're getting.</span>
+      <span data-ar>كل خدمة نقدمها تبنى على فهم حقيقي لطلب عميلنا منذ البداية وسيعرف ماذا سيحصل عليه</span>
+    </p>
+
+    <div class="svc-grid">
+      <a href="request.html" onclick="return withLang(this)" class="svc-card featured">
+        <span class="svc-flag"><span data-en>Most requested</span><span data-ar>الأكثر طلباً</span></span>
+        <div class="svc-num">01</div>
+        <div class="svc-title"><span data-en>Idea Readiness Check</span><span data-ar>فحص جاهزية الفكرة</span></div>
+        <div class="svc-desc">
+          <span data-en>A comprehensive assessment of your project, with key insights into the idea's strength and quality.</span>
+          <span data-ar>تقييم شامل للمشروع مع أهم الملاحظات على الفكرة وجودتها</span>
+        </div>
+        <div class="svc-meta">
+          <div class="svc-price"><span data-en>From USD 15,000</span><span data-ar>تبدأ من 15,000 دولار</span></div>
+          <div class="svc-days"><span data-en>3 business days</span><span data-ar>3 أيام عمل</span></div>
+          <div class="svc-free-note"><span data-en>Get an initial assessment to understand your idea</span><span data-ar>احصل على تقييم أولي لفهم فكرتك</span></div>
+        </div>
+      </a>
+      <a href="request.html" onclick="return withLang(this)" class="svc-card">
+        <div class="svc-num">02</div>
+        <div class="svc-title"><span data-en>Investment Readiness Study</span><span data-ar>دراسة جاهزية الاستثمار</span></div>
+        <div class="svc-desc">
+          <span data-en>A study of the investment opportunity across its market, financial, and economic dimensions — identifying risks and the plans to manage them.</span>
+          <span data-ar>دراسة الفرصة الاستثمارية بأبعادها السوقية والمالية والاقتصادية، وتحديد المخاطر وخططها</span>
+        </div>
+        <div class="svc-meta">
+          <div class="svc-price"><span data-en>From USD 35,000</span><span data-ar>تبدأ من 35,000 دولار</span></div>
+          <div class="svc-days"><span data-en>7 business days</span><span data-ar>7 أيام عمل</span></div>
+          <div class="svc-free-note"><span data-en>Get an initial assessment to understand your idea</span><span data-ar>احصل على تقييم أولي لفهم فكرتك</span></div>
+        </div>
+      </a>
+      <a href="request.html" onclick="return withLang(this)" class="svc-card">
+        <div class="svc-num">03</div>
+        <div class="svc-title"><span data-en>Acquisition Review</span><span data-ar>مراجعة الاستحواذ</span></div>
+        <div class="svc-desc">
+          <span data-en>A focused evaluation of an existing business you're considering acquiring — its real value, hidden risks, and whether the price matches the opportunity.</span>
+          <span data-ar>تقييم مركّز لنشاط تجاري قائم تفكر في الاستحواذ عليه — قيمته الحقيقية، مخاطره الخفية، ومدى تناسب السعر مع الفرصة.</span>
+        </div>
+        <div class="svc-meta">
+          <div class="svc-price"><span data-en>From USD 45,000</span><span data-ar>تبدأ من 45,000 دولار</span></div>
+          <div class="svc-days"><span data-en>10 business days</span><span data-ar>10 أيام عمل</span></div>
+          <div class="svc-free-note"><span data-en>Get an initial assessment to understand your idea</span><span data-ar>احصل على تقييم أولي لفهم فكرتك</span></div>
+        </div>
+      </a>
+      <a href="request.html" onclick="return withLang(this)" class="svc-card">
+        <div class="svc-num">04</div>
+        <div class="svc-title"><span data-en>Strategic Brief</span><span data-ar>الموجز الاستراتيجي</span></div>
+        <div class="svc-desc">
+          <span data-en>When something changes fast — a new regulation, a market shift, an unexpected event — and you need an expert read on what it means for your business, before you decide your next move.</span>
+          <span data-ar>عندما يتغيّر شيء بسرعة — تشريع جديد، تحول في السوق، أو حدث غير متوقع — وتحتاج رأي خبير فيما يعنيه هذا لنشاطك، قبل أن تقرر خطوتك التالية.</span>
+        </div>
+        <div class="svc-meta">
+          <div class="svc-price"><span data-en>From USD 18,000</span><span data-ar>تبدأ من 18,000 دولار</span></div>
+          <div class="svc-days"><span data-en>4 business days</span><span data-ar>4 أيام عمل</span></div>
+          <div class="svc-free-note"><span data-en>Get an initial assessment to understand your idea</span><span data-ar>احصل على تقييم أولي لفهم فكرتك</span></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="pricing-note">
+      <span data-en>Pricing reflects scope and complexity — final terms are confirmed together before work begins.</span>
+      <span data-ar>السعر يعكس نطاق المشروع وتعقيده — وتُحدَّد التفاصيل النهائية سوياً قبل بدء العمل.</span>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="section-pad wrap">
+    <div class="eyebrow"><span data-en>Research</span><span data-ar>الأبحاث</span></div>
+    <div class="s-title"><span data-en>Economic Reports</span><span data-ar>تقارير اقتصادية</span></div>
+    <p class="s-sub">
+      <span data-en>Quarterly reports covering macroeconomic trends, sector shifts, and investment signals across the MENA region.</span>
+      <span data-ar>تقارير ربع سنوية تغطي الاتجاهات الاقتصادية الكلية، تحولات القطاعات، ومؤشرات الاستثمار في منطقة الشرق الأوسط وشمال أفريقيا.</span>
+    </p>
+
+    <div class="report-feature">
+      <div class="report-spine">
+        <div class="report-spine-q">Q3</div>
+        <div class="report-spine-label">2026</div>
+      </div>
+      <div class="report-content">
+        <div class="report-tag"><span data-en>Latest Report</span><span data-ar>أحدث تقرير</span></div>
+        <div class="report-title"><span data-en>MENA Economic Pulse — Q3 2026</span><span data-ar>نبض الاقتصاد في المنطقة — الربع الثالث 2026</span></div>
+        <div class="report-desc">
+          <span data-en>A structured snapshot of macroeconomic conditions across the MENA region — covering oil dynamics, inflation trends, sector opportunities, and one country in focus.</span>
+          <span data-ar>لمحة منظمة عن الأوضاع الاقتصادية الكلية في المنطقة — تغطي ديناميكيات النفط، اتجاهات التضخم، فرص القطاعات، ودولة محورية في كل عدد.</span>
+        </div>
+        <div class="report-meta">
+          <span data-en>September 2026</span><span data-ar>سبتمبر 2026</span>
+          <span data-en>8 pages</span><span data-ar>8 صفحات</span>
+        </div>
+        <div class="report-topics">
+          <span class="topic-chip"><span data-en>Oil &amp; Energy</span><span data-ar>النفط والطاقة</span></span>
+          <span class="topic-chip"><span data-en>Inflation</span><span data-ar>التضخم</span></span>
+          <span class="topic-chip"><span data-en>FDI Flows</span><span data-ar>الاستثمار الأجنبي</span></span>
+          <span class="topic-chip"><span data-en>Saudi Arabia Focus</span><span data-ar>ملف السعودية</span></span>
+          <span class="topic-chip"><span data-en>Q4 Outlook</span><span data-ar>توقعات الربع الرابع</span></span>
+        </div>
+        <div class="report-actions">
+          <button class="btn-dl" onclick="openModal()"><span data-en>Download free</span><span data-ar>تحميل مجاني</span></button>
+          <button class="btn-outline" onclick="alert('Preview coming soon.')"><span data-en>What's inside</span><span data-ar>محتويات التقرير</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin-bottom:1rem"><span data-en>Coming next</span><span data-ar>قريباً</span></div>
+    <div class="coming-row">
+      <div class="coming-card">
+        <div class="coming-label"><span data-en>Q4 2026</span><span data-ar>الربع الرابع 2026</span></div>
+        <div class="coming-title"><span data-en>MENA Economic Pulse — Q4 2026</span><span data-ar>نبض الاقتصاد — الربع الرابع 2026</span></div>
+        <div class="coming-date"><span data-en>December 2026</span><span data-ar>ديسمبر 2026</span></div>
+      </div>
+      <div class="coming-card">
+        <div class="coming-label"><span data-en>Sector report</span><span data-ar>تقرير قطاعي</span></div>
+        <div class="coming-title"><span data-en>Manufacturing Outlook — GCC 2027</span><span data-ar>آفاق التصنيع — دول الخليج 2027</span></div>
+        <div class="coming-date"><span data-en>January 2027</span><span data-ar>يناير 2027</span></div>
+      </div>
+      <div class="coming-card">
+        <div class="coming-label"><span data-en>Annual</span><span data-ar>تقرير سنوي</span></div>
+        <div class="coming-title"><span data-en>MENA Investment Landscape 2027</span><span data-ar>خريطة الاستثمار الإقليمية 2027</span></div>
+        <div class="coming-date"><span data-en>February 2027</span><span data-ar>فبراير 2027</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="how">
+  <div class="section-pad wrap">
+    <div class="eyebrow"><span data-en>How it works</span><span data-ar>آلية العمل</span></div>
+    <div class="s-title"><span data-en>A clear path, every step.</span><span data-ar>مسار واضح، في كل خطوة.</span></div>
+    <p class="s-sub">
+      <span data-en>One path, every service — clear from the first message to the final deliverable.</span>
+      <span data-ar>مسار واحد لكل خدمة — واضح من أول تواصل وحتى التسليم النهائي.</span>
+    </p>
+    <div class="process-grid">
+      <div class="proc-step">
+        <div class="proc-num">01</div>
+        <div class="proc-title"><span data-en>Tell us about your project</span><span data-ar>أخبرنا عن مشروعك</span></div>
+        <div class="proc-desc"><span data-en>Share the details and data we need. We review them and come back with a clear scope, timeline, and price.</span><span data-ar>شاركنا بالتفاصيل والبيانات المطلوبة. نراجعها ونعود إليك بنطاق عمل واضح، ومدة، وسعر.</span></div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">02</div>
+        <div class="proc-title"><span data-en>Approve and pay</span><span data-ar>الموافقة والدفع</span></div>
+        <div class="proc-desc"><span data-en>Once you confirm the scope and complete payment, we begin work on your project immediately.</span><span data-ar>بمجرد تأكيدك لنطاق العمل وإتمام الدفع، نبدأ فوراً العمل على مشروعك أو طلبك.</span></div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">03</div>
+        <div class="proc-title"><span data-en>Receive your deliverable</span><span data-ar>استلام المُخرج</span></div>
+        <div class="proc-desc"><span data-en>A comprehensive report that meets your request, built on a real understanding of your needs.</span><span data-ar>تقرير شامل يلبي طلبكم مبني على فهم حقيقي لاحتياجاتكم</span></div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">04</div>
+        <div class="proc-title"><span data-en>Post-delivery follow-up</span><span data-ar>متابعة لما بعد التسليم</span></div>
+        <div class="proc-desc"><span data-en>We check in after delivery and walk you through any findings.</span><span data-ar>نتابع معك بعد التسليم ونشرح لك أي نتائج تحتاج توضيحاً.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-pad wrap">
+    <div class="eyebrow"><span data-en>Why MEIG</span><span data-ar>لماذا MEIG</span></div>
+    <div class="s-title"><span data-en>A different angle on every decision</span><span data-ar>زاوية مختلفة لكل قرار</span></div>
+    <p class="s-sub">
+      <span data-en>The same situation looks different depending on where you stand. We show it to you in full.</span>
+      <span data-ar>الموقف نفسه يبدو مختلفاً حسب زاوية النظر إليه. نُريك إياه بالكامل.</span>
+    </p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-title"><span data-en>Judgment, not guesswork</span><span data-ar>حكمة، لا تخمين</span></div>
+        <div class="why-desc"><span data-en>Every report is built on real economic understanding.</span><span data-ar>كل تقرير مبني على فهم اقتصادي واقعي.</span></div>
+      </div>
+      <div class="why-card">
+        <div class="why-title"><span data-en>Speed and quality</span><span data-ar>سرعة وجودة</span></div>
+        <div class="why-desc"><span data-en>Delivery in record time, without compromising on accuracy.</span><span data-ar>تسليم في وقت قياسي مع دقة المخرجات</span></div>
+      </div>
+      <div class="why-card">
+        <div class="why-title"><span data-en>Macro meets execution</span><span data-ar>الاقتصاد الكلي يلتقي بالتنفيذ</span></div>
+        <div class="why-desc"><span data-en>We connect economic trends to operational decisions.</span><span data-ar>نربط الاتجاهات الاقتصادية بقرارات تشغيلية فعلية.</span></div>
+      </div>
+      <div class="why-card">
+        <div class="why-title"><span data-en>Full transparency upfront</span><span data-ar>شفافية من البداية</span></div>
+        <div class="why-desc"><span data-en>You see exactly what you'll receive, and what it costs, before committing.</span><span data-ar>تعرف بالضبط ما الذي ستحصل عليه، وما تكلفته، قبل الالتزام.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="section-pad wrap">
+    <div class="eyebrow"><span data-en>Stay informed</span><span data-ar>ابقَ على اطلاع</span></div>
+    <div class="s-title"><span data-en>Get reports</span><span data-ar>احصل على التقارير</span></div>
+    <p class="s-sub">
+      <span data-en>Subscribe to the MEIG Intelligence Brief for insights that matter.</span>
+      <span data-ar>اشترك في نشرة MEIG الاقتصادية للحصول على رؤى تهمك.</span>
+    </p>
+
+    <div class="nl-box">
+      <div>
+        <div class="nl-title"><span data-en>MEIG Intelligence Brief</span><span data-ar>نشرة MEIG الاقتصادية</span></div>
+        <div class="nl-sub">
+          <span data-en>Quarterly economic reports and occasional insights on MENA markets, delivered to your inbox.</span>
+          <span data-ar>تقارير اقتصادية ربع سنوية ورؤى دورية حول أسواق المنطقة، تصلك مباشرة في بريدك.</span>
+        </div>
+        <div class="nl-perk"><span data-en>Every new report sent directly to you</span><span data-ar>كل تقرير جديد يصلك مباشرة</span></div>
+        <div class="nl-perk"><span data-en>Early access before public release</span><span data-ar>وصول مبكر قبل النشر العام</span></div>
+        <div class="nl-perk"><span data-en>Unsubscribe anytime</span><span data-ar>إلغاء الاشتراك في أي وقت</span></div>
+      </div>
+      <div>
+        <div class="nl-form" id="nlForm">
+          <input type="text" id="nlName" data-ph-en="Your name" data-ph-ar="اسمك">
+          <input type="email" id="nlEmail" data-ph-en="your@email.com" data-ph-ar="بريدك الإلكتروني">
+          <button class="nl-submit" onclick="subscribe()"><span data-en>Subscribe</span><span data-ar>اشترك</span></button>
+          <div class="nl-note"><span data-en>Be among the first to subscribe.</span><span data-ar>كن من أوائل المشتركين.</span></div>
+        </div>
+        <div class="nl-success" id="nlSuccess">
+          <span data-en>You're in. The next report lands in your inbox the moment it's published.</span>
+          <span data-ar>تم! ستصلك أحدث التقارير في بريدك فور نشرها.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-pad wrap">
+    <div class="cta-title"><span data-en>Ready to make a better decision?</span><span data-ar>جاهز لاتخاذ قرار أفضل؟</span></div>
+    <p class="cta-sub">
+      <span data-en>Every engagement with MENA Economic Intelligence Group begins with an initial assessment.</span>
+      <span data-ar>كل مشروع مع MENA Economic Intelligence Group يبدأ بتقييم أولي.</span>
+    </p>
+    <div class="cta-actions">
+      <a href="request.html" onclick="return withLang(this)" class="btn-fill"><span data-en>Request an assessment</span><span data-ar>اطلب تقييماً</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">MENA Economic Intelligence Group</div>
+      <div class="footer-abbr"><span data-en>MEIG · Economic Advisory</span><span data-ar>MEIG · استشارات اقتصادية</span></div>
+    </div>
+    <div class="footer-links">
+      <a href="#services"><span data-en>Services</span><span data-ar>الخدمات</span></a>
+      <a href="#research"><span data-en>Research</span><span data-ar>الأبحاث</span></a>
+      <a href="mailto:info@meiggroup.com"><span data-en>Contact</span><span data-ar>تواصل</span></a>
+    </div>
+    <div class="footer-copy"><span data-en>© 2026 MENA Economic Intelligence Group</span><span data-ar>© 2026 MENA Economic Intelligence Group</span></div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-title"><span data-en>Get the Q3 2026 report</span><span data-ar>احصل على تقرير الربع الثالث 2026</span></div>
+    <div class="modal-sub">
+      <span data-en>Enter your details and we'll send you the PDF, and notify you when the next report is published.</span>
+      <span data-ar>أدخل بياناتك وسنرسل لك ملف PDF، وسنُعلمك عند نشر التقرير القادم.</span>
+    </div>
+    <div class="modal-form">
+      <input type="text" id="gateName" data-ph-en="Your name" data-ph-ar="اسمك">
+      <input type="email" id="gateEmail" data-ph-en="your@email.com" data-ph-ar="بريدك الإلكتروني">
+      <button class="modal-submit" onclick="downloadReport()"><span data-en>Send me the report</span><span data-ar>أرسل لي التقرير</span></button>
+      <button class="modal-cancel" onclick="closeModal()"><span data-en>Maybe later</span><span data-ar>ربما لاحقاً</span></button>
+      <div class="modal-note"><span data-en>You'll also receive future reports. Unsubscribe anytime.</span><span data-ar>ستصلك أيضاً التقارير القادمة. يمكنك إلغاء الاشتراك في أي وقت.</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(){document.getElementById('modalOverlay').classList.add('open')}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open')}
+function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal()}
+
+function downloadReport(){
+  const n=document.getElementById('gateName').value.trim();
+  const em=document.getElementById('gateEmail').value.trim();
+  const isAr = document.documentElement.dir === 'rtl';
+  if(!n||!em.includes('@')){alert(isAr ? 'الرجاء إدخال اسمك وبريد إلكتروني صحيح.' : 'Please enter your name and a valid email address.');return}
+  closeModal();
+  window.location.href='mailto:info@meiggroup.com?subject=Report Download Request&body=Name: '+n+'%0AEmail: '+em+'%0A%0APlease send me the MENA Economic Pulse Q3 2026 report.';
+}
+
+function subscribe(){
+  const n=document.getElementById('nlName').value.trim();
+  const em=document.getElementById('nlEmail').value.trim();
+  const isAr = document.documentElement.dir === 'rtl';
+  if(!n||!em.includes('@')){alert(isAr ? 'الرجاء إدخال اسمك وبريد إلكتروني صحيح.' : 'Please enter your name and a valid email address.');return}
+  document.getElementById('nlForm').style.display='none';
+  document.getElementById('nlSuccess').style.display='flex';
+  window.location.href='mailto:info@meiggroup.com?subject=Newsletter Subscription&body=Name: '+n+'%0AEmail: '+em+'%0A%0APlease add me to the MEIG Intelligence Brief.';
+}
+
+function updatePlaceholders(){
+  const isAr = document.documentElement.dir === 'rtl';
+  document.querySelectorAll('[data-ph-en]').forEach(el=>{
+    el.placeholder = isAr ? el.getAttribute('data-ph-ar') : el.getAttribute('data-ph-en');
+  });
+}
+
+function toggleLang(){
+  const html = document.documentElement;
+  const isRtl = html.dir === 'rtl';
+  if(isRtl){
+    html.dir = 'ltr';
+    html.lang = 'en';
+  } else {
+    html.dir = 'rtl';
+    html.lang = 'ar';
+  }
+  updatePlaceholders();
+}
+
+/* Carry current language to the next page via a URL parameter (works reliably even with local files) */
+function withLang(linkEl){
+  const isAr = document.documentElement.dir === 'rtl';
+  const baseHref = linkEl.getAttribute('href').split('?')[0];
+  linkEl.href = baseHref + (isAr ? '?lang=ar' : '?lang=en');
+  return true;
+}
+
+/* On load, read ?lang= from the URL and apply it before anything else paints */
+(function initLangFromUrl(){
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get('lang');
+  if(lang === 'ar'){
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else if(lang === 'en'){
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+})();
+
+// initialize placeholders on load
+updatePlaceholders();
+</script>
+</body>
+</html>
