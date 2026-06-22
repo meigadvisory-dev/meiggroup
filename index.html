@@ -235,6 +235,8 @@ footer{padding:2.2rem 0;background:var(--navy-deep);color:#9fb0c7}
 .modal-submit:hover{background:var(--navy-deep)}
 .modal-cancel{background:none;border:none;color:var(--ink-faint);font-size:13px;text-align:center;padding:6px}
 .modal-note{font-size:11px;color:var(--ink-faint);text-align:center}
+.modal-checkbox{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:var(--ink-soft);line-height:1.5;cursor:pointer;padding:2px 0}
+.modal-checkbox input[type="checkbox"]{width:15px;height:15px;accent-color:var(--navy);cursor:pointer;flex-shrink:0;margin-top:2px}
 
 /* ============ REQUEST MODAL ============ */
 .req-modal{max-width:460px}
@@ -587,9 +589,12 @@ html[dir="rtl"] .req-success-title{font-family:var(--arserif)}
     <div class="modal-form">
       <input type="text" id="gateName" data-ph-en="Your name" data-ph-ar="اسمك">
       <input type="email" id="gateEmail" data-ph-en="your@email.com" data-ph-ar="بريدك الإلكتروني">
+      <label class="modal-checkbox">
+        <input type="checkbox" id="gateOptIn" checked>
+        <span><span data-en>Notify me when the next report is published</span><span data-ar>أعلمني عند نشر التقرير القادم</span></span>
+      </label>
       <button class="modal-submit" onclick="downloadReport()"><span data-en>Send me the report</span><span data-ar>أرسل لي التقرير</span></button>
       <button class="modal-cancel" onclick="closeModal()"><span data-en>Maybe later</span><span data-ar>ربما لاحقاً</span></button>
-      <div class="modal-note"><span data-en>You'll also receive future reports. Unsubscribe anytime.</span><span data-ar>ستصلك أيضاً التقارير القادمة. يمكنك إلغاء الاشتراك في أي وقت.</span></div>
     </div>
   </div>
 </div>
@@ -602,6 +607,7 @@ function closeModalOutside(e){if(e.target===document.getElementById('modalOverla
 function downloadReport(){
   const n=document.getElementById('gateName').value.trim();
   const em=document.getElementById('gateEmail').value.trim();
+  const optIn=document.getElementById('gateOptIn').checked;
   const isAr = document.documentElement.dir === 'rtl';
   if(!n||!em.includes('@')){alert(isAr ? 'الرجاء إدخال اسمك وبريد إلكتروني صحيح.' : 'Please enter your name and a valid email address.');return}
 
@@ -613,6 +619,7 @@ function downloadReport(){
   fd.append('name', n);
   fd.append('email', em);
   fd.append('form_type', 'Report Download — MENA Economic Pulse Q3 2026');
+  fd.append('newsletter_opt_in', optIn ? 'yes' : 'no');
   fd.append('language', isAr ? 'Arabic' : 'English');
 
   fetch('https://formspree.io/f/mojoangy', {
