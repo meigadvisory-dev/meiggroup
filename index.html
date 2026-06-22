@@ -604,8 +604,30 @@ function downloadReport(){
   const em=document.getElementById('gateEmail').value.trim();
   const isAr = document.documentElement.dir === 'rtl';
   if(!n||!em.includes('@')){alert(isAr ? 'الرجاء إدخال اسمك وبريد إلكتروني صحيح.' : 'Please enter your name and a valid email address.');return}
+
+  const reportUrl = isAr
+    ? 'reports/MENA-Economic-Pulse-Q3-2026-AR.pdf'
+    : 'reports/MENA-Economic-Pulse-Q3-2026-EN.pdf';
+
+  const fd = new FormData();
+  fd.append('name', n);
+  fd.append('email', em);
+  fd.append('form_type', 'Report Download — MENA Economic Pulse Q3 2026');
+  fd.append('language', isAr ? 'Arabic' : 'English');
+
+  fetch('https://formspree.io/f/mojoangy', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: fd
+  }).catch(() => {});
+
   closeModal();
-  window.location.href='mailto:info@meiggroup.com?subject=Report Download Request&body=Name: '+n+'%0AEmail: '+em+'%0A%0APlease send me the MENA Economic Pulse Q3 2026 report.';
+  const a = document.createElement('a');
+  a.href = reportUrl;
+  a.download = '';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 }
 
 function subscribe(){
@@ -613,9 +635,21 @@ function subscribe(){
   const em=document.getElementById('nlEmail').value.trim();
   const isAr = document.documentElement.dir === 'rtl';
   if(!n||!em.includes('@')){alert(isAr ? 'الرجاء إدخال اسمك وبريد إلكتروني صحيح.' : 'Please enter your name and a valid email address.');return}
+
+  const fd = new FormData();
+  fd.append('name', n);
+  fd.append('email', em);
+  fd.append('form_type', 'Newsletter Subscription — MEIG Intelligence Brief');
+  fd.append('language', isAr ? 'Arabic' : 'English');
+
+  fetch('https://formspree.io/f/mojoangy', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: fd
+  }).catch(() => {});
+
   document.getElementById('nlForm').style.display='none';
   document.getElementById('nlSuccess').style.display='flex';
-  window.location.href='mailto:info@meiggroup.com?subject=Newsletter Subscription&body=Name: '+n+'%0AEmail: '+em+'%0A%0APlease add me to the MEIG Intelligence Brief.';
 }
 
 function updatePlaceholders(){
