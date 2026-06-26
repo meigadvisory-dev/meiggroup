@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Signal Brief — MEIG</title>
+<meta name="description" content="Get an instant investment signal brief for MENA markets — powered by MEIG's economic intelligence framework.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171c;
+  --ink-soft:#4a4f59;
+  --ink-faint:#8d92a0;
+  --paper:#fbfaf7;
+  --panel:#ffffff;
+  --line:#e4e1da;
+  --navy:#1f3a5f;
+  --navy-deep:#13243d;
+  --gold:#a87f3f;
+  --gold-soft:#f3ead9;
+  --serif:'Source Serif 4', Georgia, serif;
+  --sans:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --arserif:'Noto Naskh Arabic', serif;
+  --arsans:'Noto Kufi Arabic', sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 2.5rem}
+
+/* ===== RTL SWITCH ===== */
+html[dir="rtl"] body{font-family:var(--arsans)}
+html[dir="rtl"] .headline,
+html[dir="rtl"] .s-title,
+html[dir="rtl"] .report-out-title,
+html[dir="rtl"] .section-label,
+html[dir="rtl"] .footer-name,
+html[dir="rtl"] .brief-label{font-family:var(--arserif)}
+html[dir="rtl"] .brand-name{font-family:var(--arserif)}
+html[dir="rtl"] .accent{font-style:normal}
+html[dir="rtl"] .nav-cta,
+html[dir="rtl"] .kicker,
+html[dir="rtl"] .eyebrow{letter-spacing:0}
+html[dir="rtl"] .btn-fill svg,
+html[dir="rtl"] .submit-btn svg{transform:scaleX(-1)}
+
+/* translation spans */
+span[data-ar]{display:none}
+html[dir="rtl"] span[data-en]{display:none}
+html[dir="rtl"] span[data-ar]{display:inline}
+
+.lang-btn{background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-size:12.5px;font-weight:500;padding:7px 13px;border-radius:3px;display:inline-flex;align-items:center;gap:5px;transition:all .15s}
+.lang-btn:hover{border-color:var(--ink-faint);color:var(--ink)}
+
+/* ===== NAV ===== */
+nav{position:sticky;top:0;z-index:100;background:rgba(251,250,247,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-mark{width:30px;height:30px;flex-shrink:0}
+.brand-name{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.2px;line-height:1.2}
+.brand-tag{font-size:9.5px;color:var(--ink-faint);letter-spacing:1.4px;text-transform:uppercase;margin-top:1px}
+html[dir="rtl"] .brand-tag{letter-spacing:0}
+.nav-right{display:flex;align-items:center;gap:1.2rem}
+.nav-back{font-size:13.5px;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .15s}
+.nav-back:hover{color:var(--ink)}
+.nav-back svg{flex-shrink:0}
+html[dir="rtl"] .nav-back svg{transform:scaleX(-1)}
+
+/* ===== HERO ===== */
+.hero{border-bottom:1px solid var(--line);background:var(--navy-deep);color:#fff}
+.hero-inner{max-width:1180px;margin:0 auto;padding:4rem 2.5rem 3.5rem}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:#9fb0c7;margin-bottom:1.5rem;font-weight:500}
+.kicker::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+h1.headline{font-family:var(--serif);font-size:clamp(28px,4vw,44px);font-weight:600;line-height:1.15;letter-spacing:-1px;max-width:600px;margin-bottom:1rem;color:#fff}
+html[dir="rtl"] h1.headline{letter-spacing:0;line-height:1.35}
+h1.headline .accent{font-style:italic;color:var(--gold)}
+html[dir="rtl"] h1.headline .accent{font-style:normal}
+.hero-sub{font-size:15px;color:#aebbcf;line-height:1.7;max-width:520px}
+
+/* ===== MAIN LAYOUT ===== */
+.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:calc(100vh - 280px)}
+.form-col{border-inline-end:1px solid var(--line);padding:3rem 2.5rem}
+.result-col{padding:3rem 2.5rem;background:var(--panel)}
+
+@media(max-width:860px){
+  .main-grid{grid-template-columns:1fr}
+  .form-col{border-inline-end:none;border-bottom:1px solid var(--line)}
+}
+
+/* ===== FORM ===== */
+.col-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:1.8rem}
+html[dir="rtl"] .col-label{letter-spacing:0}
+
+.field{margin-bottom:1.4rem}
+.field-label{font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:6px;display:block}
+.field-hint{font-size:11.5px;color:var(--ink-faint);margin-bottom:8px}
+
+/* custom dropdown */
+.custom-select{position:relative}
+.select-trigger{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:3px;background:var(--paper);font-family:inherit;font-size:14px;color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer;transition:border-color .15s;text-align:start}
+.select-trigger:hover,.select-trigger.open{border-color:var(--navy)}
+.select-trigger .placeholder{color:var(--ink-faint)}
+.select-arrow{flex-shrink:0;transition:transform .15s;color:var(--ink-faint)}
+.select-trigger.open .select-arrow{transform:rotate(180deg)}
+.select-dropdown{position:absolute;top:calc(100% + 4px);inset-inline-start:0;inset-inline-end:0;background:var(--panel);border:1px solid var(--line);border-radius:3px;z-index:50;box-shadow:0 4px 16px rgba(0,0,0,0.08);display:none}
+.select-dropdown.open{display:block}
+.select-option{padding:10px 14px;font-size:13.5px;cursor:pointer;transition:background .1s;color:var(--ink)}
+.select-option:hover{background:var(--gold-soft)}
+.select-option.selected{color:var(--navy);font-weight:600}
+
+/* multi select chips */
+.chip-group{display:flex;flex-wrap:wrap;gap:7px;padding:10px;border:1px solid var(--line);border-radius:3px;background:var(--paper);min-height:46px;cursor:pointer;transition:border-color .15s}
+.chip-group:hover{border-color:var(--navy)}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:4px 10px;border-radius:99px;border:1px solid var(--line);background:var(--panel);color:var(--ink-soft);cursor:pointer;transition:all .12s;white-space:nowrap}
+.chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chip-hint{font-size:11.5px;color:var(--ink-faint);margin-top:5px}
+
+/* submit */
+.submit-btn{width:100%;background:var(--navy);color:#fff;padding:14px 24px;border-radius:3px;font-size:14px;font-weight:600;border:none;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s;margin-top:1.8rem}
+.submit-btn:hover:not(:disabled){background:var(--navy-deep)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.submit-note{font-size:11.5px;color:var(--ink-faint);text-align:center;margin-top:.8rem;line-height:1.5}
+
+/* ===== RESULT ===== */
+.result-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;padding:2rem}
+.result-empty-icon{width:48px;height:48px;border-radius:50%;background:var(--gold-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem}
+.result-empty-title{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:.5rem;color:var(--ink)}
+html[dir="rtl"] .result-empty-title{font-family:var(--arserif)}
+.result-empty-text{font-size:13.5px;color:var(--ink-soft);line-height:1.65;max-width:300px}
+
+.result-loading{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;gap:1rem}
+.spinner{width:36px;height:36px;border:2.5px solid var(--line);border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:13.5px;color:var(--ink-soft)}
+
+.result-output{display:none}
+.result-header{border-bottom:1px solid var(--line);padding-bottom:1.2rem;margin-bottom:1.8rem}
+.result-tag{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+html[dir="rtl"] .result-tag{letter-spacing:0}
+.report-out-title{font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:-0.3px;color:var(--ink);margin-bottom:.5rem}
+.result-meta{display:flex;gap:1rem;flex-wrap:wrap;font-size:12px;color:var(--ink-faint)}
+.result-meta span{display:inline-flex;align-items:center;gap:4px}
+.result-meta span::before{content:'·';color:var(--line)}
+.result-meta span:first-child::before{display:none}
+
+.brief-section{margin-bottom:1.6rem;padding-bottom:1.6rem;border-bottom:1px solid var(--line)}
+.brief-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.brief-label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--navy);margin-bottom:.5rem;display:flex;align-items:center;gap:7px}
+html[dir="rtl"] .brief-label{letter-spacing:0}
+.brief-label::after{content:'';flex:1;height:1px;background:var(--line)}
+.brief-text{font-size:14px;color:var(--ink);line-height:1.75}
+
+.meig-view-box{background:var(--navy-deep);color:#fff;border-radius:3px;padding:1.3rem 1.5rem;margin-top:.3rem}
+.meig-view-box .brief-text{color:#d6deea;font-size:14px}
+
+.result-actions{display:flex;gap:10px;margin-top:1.8rem;padding-top:1.5rem;border-top:1px solid var(--line);flex-wrap:wrap}
+.btn-restart{background:transparent;color:var(--ink-soft);padding:10px 18px;border-radius:3px;font-size:13px;border:1px solid var(--line);display:inline-flex;align-items:center;gap:7px;transition:all .15s}
+.btn-restart:hover{border-color:var(--ink-faint);color:var(--ink)}
+.btn-cta{background:var(--navy);color:#fff;padding:10px 20px;border-radius:3px;font-size:13px;font-weight:500;border:none;display:inline-flex;align-items:center;gap:7px;text-decoration:none;transition:background .15s}
+.btn-cta:hover{background:var(--navy-deep)}
+
+.disclaimer{font-size:11.5px;color:var(--ink-faint);line-height:1.6;margin-top:1.2rem;padding:1rem 1.2rem;border:1px solid var(--line);border-inline-start:2px solid var(--gold);border-radius:0 3px 3px 0}
+
+/* ===== FOOTER ===== */
+footer{padding:2.2rem 0;background:var(--navy-deep);color:#9fb0c7;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-inner{max-width:1180px;margin:0 auto;padding:0 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-name{font-family:var(--serif);font-size:14px;font-weight:600;color:#fff}
+.footer-abbr{font-size:10px;color:#7c8aa3;letter-spacing:1px;margin-top:2px}
+.footer-copy{font-size:12px;color:#7c8aa3}
+@media(max-width:700px){.footer-inner{flex-direction:column;text-align:center}}
+
+@media(max-width:600px){
+  .wrap,.hero-inner,.form-col,.result-col{padding-left:1.3rem;padding-right:1.3rem}
+  .form-col,.result-col{padding-top:2rem;padding-bottom:2rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" onclick="return withLang(this)" class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none">
+        <circle cx="11" cy="16" r="7.5" stroke="#15171c" stroke-width="1"/>
+        <circle cx="21" cy="16" r="7.5" stroke="#a87f3f" stroke-width="1"/>
+      </svg>
+      <div>
+        <div class="brand-name">MENA Economic Intelligence Group</div>
+        <div class="brand-tag"><span data-en>Economic Advisory · MEIG</span><span data-ar>استشارات اقتصادية · MEIG</span></div>
+      </div>
+    </a>
+    <div class="nav-right">
+      <a href="index.html" onclick="return withLang(this)" class="nav-back">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M6 4L3 7l3 3" stroke="#4a4f59" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-en>Back</span><span data-ar>رجوع</span>
+      </a>
+      <button class="lang-btn" onclick="toggleLang()" id="langBtn">
+        <span data-en>العربية</span><span data-ar>English</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="kicker">
+      <span data-en>Investment Intelligence · MENA</span>
+      <span data-ar>ذكاء استثماري · المنطقة</span>
+    </div>
+    <h1 class="headline">
+      <span data-en>Your <span class="accent">signal brief</span> in seconds.</span>
+      <span data-ar>موجزك الاستثماري <span class="accent">في ثوانٍ.</span></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-en>Tell us where you're looking. We'll return an investment signal brief built on MEIG's regional intelligence framework — signal, risk, timing, and our view.</span>
+      <span data-ar>أخبرنا أين تنظر. سنعيد إليك موجزاً استثمارياً مبنياً على إطار MEIG للذكاء الإقليمي — الإشارة، المخاطر، التوقيت، ورأينا.</span>
+    </p>
+  </div>
+</div>
+
+<div class="wrap" style="padding-top:0;padding-bottom:0">
+  <div class="main-grid">
+
+    <!-- FORM COLUMN -->
+    <div class="form-col">
+      <div class="col-label"><span data-en>Your Investment Parameters</span><span data-ar>معطيات استثمارك</span></div>
+
+      <!-- Sector -->
+      <div class="field">
+        <label class="field-label"><span data-en>Sector</span><span data-ar>القطاع</span></label>
+        <div class="custom-select" id="sel-sector">
+          <button type="button" class="select-trigger" onclick="toggleDropdown('sector')">
+            <span class="select-value placeholder" id="val-sector">
+              <span data-en>Select a sector</span><span data-ar>اختر قطاعاً</span>
+            </span>
+            <svg class="select-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="#8d92a0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="select-dropdown" id="dd-sector"></div>
+        </div>
+      </div>
+
+      <!-- Country -->
+      <div class="field">
+        <label class="field-label"><span data-en>Country / Region</span><span data-ar>الدولة / المنطقة</span></label>
+        <div class="chip-group" id="chips-country"></div>
+        <div class="chip-hint"><span data-en>Select one or more</span><span data-ar>اختر واحدة أو أكثر</span></div>
+      </div>
+
+      <!-- Stage -->
+      <div class="field">
+        <label class="field-label"><span data-en>Investment Stage</span><span data-ar>مرحلة الاستثمار</span></label>
+        <div class="custom-select" id="sel-stage">
+          <button type="button" class="select-trigger" onclick="toggleDropdown('stage')">
+            <span class="select-value placeholder" id="val-stage">
+              <span data-en>Select a stage</span><span data-ar>اختر المرحلة</span>
+            </span>
+            <svg class="select-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="#8d92a0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="select-dropdown" id="dd-stage"></div>
+        </div>
+      </div>
+
+      <!-- Horizon -->
+      <div class="field">
+        <label class="field-label"><span data-en>Time Horizon</span><span data-ar>الأفق الزمني</span></label>
+        <div class="custom-select" id="sel-horizon">
+          <button type="button" class="select-trigger" onclick="toggleDropdown('horizon')">
+            <span class="select-value placeholder" id="val-horizon">
+              <span data-en>Select a horizon</span><span data-ar>اختر الأفق الزمني</span>
+            </span>
+            <svg class="select-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="#8d92a0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="select-dropdown" id="dd-horizon"></div>
+        </div>
+      </div>
+
+      <!-- Concern -->
+      <div class="field">
+        <label class="field-label"><span data-en>Primary Concern</span><span data-ar>القلق الرئيسي</span></label>
+        <div class="chip-group" id="chips-concern"></div>
+        <div class="chip-hint"><span data-en>Select one</span><span data-ar>اختر واحداً</span></div>
+      </div>
+
+      <button class="submit-btn" id="submitBtn" onclick="generateBrief()" disabled>
+        <span data-en>Generate Signal Brief</span><span data-ar>توليد الموجز الاستثماري</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="submit-note">
+        <span data-en>Powered by MEIG's regional intelligence framework. For initial orientation only.</span>
+        <span data-ar>مبني على إطار MEIG للذكاء الإقليمي. للتوجيه الأولي فقط.</span>
+      </div>
+    </div>
+
+    <!-- RESULT COLUMN -->
+    <div class="result-col">
+
+      <!-- Empty state -->
+      <div class="result-empty" id="stateEmpty">
+        <div class="result-empty-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4v3M11 15v3M4 11h3M15 11h3" stroke="#a87f3f" stroke-width="1.5" stroke-linecap="round"/><circle cx="11" cy="11" r="3" stroke="#a87f3f" stroke-width="1.5"/></svg>
+        </div>
+        <div class="result-empty-title"><span data-en>Your brief will appear here</span><span data-ar>سيظهر موجزك هنا</span></div>
+        <p class="result-empty-text">
+          <span data-en>Fill in your investment parameters on the left and generate your signal brief.</span>
+          <span data-ar>أدخل معطيات استثمارك على اليسار وولّد موجزك الاستثماري.</span>
+        </p>
+      </div>
+
+      <!-- Loading state -->
+      <div class="result-loading" id="stateLoading">
+        <div class="spinner"></div>
+        <div class="loading-text">
+          <span data-en>Analyzing regional signals…</span>
+          <span data-ar>جارٍ تحليل الإشارات الإقليمية…</span>
+        </div>
+      </div>
+
+      <!-- Output state -->
+      <div class="result-output" id="stateOutput">
+        <div class="result-header">
+          <div class="result-tag"><span data-en>Investment Signal Brief</span><span data-ar>الموجز الاستثماري</span></div>
+          <div class="report-out-title" id="outputTitle"></div>
+          <div class="result-meta" id="outputMeta"></div>
+        </div>
+
+        <div class="brief-section">
+          <div class="brief-label"><span data-en>Signal</span><span data-ar>الإشارة</span></div>
+          <div class="brief-text" id="outSignal"></div>
+        </div>
+        <div class="brief-section">
+          <div class="brief-label"><span data-en>Risk</span><span data-ar>المخاطرة</span></div>
+          <div class="brief-text" id="outRisk"></div>
+        </div>
+        <div class="brief-section">
+          <div class="brief-label"><span data-en>Timing</span><span data-ar>التوقيت</span></div>
+          <div class="brief-text" id="outTiming"></div>
+        </div>
+        <div class="brief-section">
+          <div class="brief-label"><span data-en>MEIG View</span><span data-ar>رأي MEIG</span></div>
+          <div class="meig-view-box">
+            <div class="brief-text" id="outView"></div>
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          <span data-en>This brief is an initial orientation tool and does not constitute investment advice. For a full assessment, engage MEIG directly.</span>
+          <span data-ar>هذا الموجز أداة توجيه أولية ولا يُعدّ نصيحة استثمارية. للحصول على تقييم كامل، تواصل مع MEIG مباشرة.</span>
+        </div>
+
+        <div class="result-actions">
+          <button class="btn-restart" onclick="resetForm()">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5A4.5 4.5 0 1 0 4 2.8" stroke="#4a4f59" stroke-width="1.4" stroke-linecap="round"/><path d="M2 2.5v3h3" stroke="#4a4f59" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-en>New brief</span><span data-ar>موجز جديد</span>
+          </button>
+          <a href="request.html" onclick="return withLang(this)" class="btn-cta">
+            <span data-en>Request a full assessment</span><span data-ar>اطلب تقييماً كاملاً</span>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M3 6.5h7M8 4l3 2.5L8 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">MENA Economic Intelligence Group</div>
+      <div class="footer-abbr"><span data-en>MEIG · Economic Advisory</span><span data-ar>MEIG · استشارات اقتصادية</span></div>
+    </div>
+    <div class="footer-copy"><span data-en>© 2026 MENA Economic Intelligence Group</span><span data-ar>© 2026 MENA Economic Intelligence Group</span></div>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const DATA = {
+  sectors: {
+    en: ['Energy & Oil', 'Real Estate', 'Technology', 'Financial Services', 'Infrastructure', 'Healthcare', 'Manufacturing', 'Logistics', 'Tourism & Hospitality', 'Agriculture', 'Other'],
+    ar: ['الطاقة والنفط', 'العقارات', 'التكنولوجيا', 'الخدمات المالية', 'البنية التحتية', 'الرعاية الصحية', 'التصنيع', 'اللوجستيات', 'السياحة والضيافة', 'الزراعة', 'أخرى']
+  },
+  countries: {
+    en: ['Saudi Arabia', 'UAE', 'Qatar', 'Kuwait', 'Bahrain', 'Oman', 'Egypt', 'Jordan', 'Iraq', 'Morocco', 'GCC (All)'],
+    ar: ['المملكة العربية السعودية', 'الإمارات', 'قطر', 'الكويت', 'البحرين', 'عُمان', 'مصر', 'الأردن', 'العراق', 'المغرب', 'دول الخليج (الكل)']
+  },
+  stages: {
+    en: ['Early Stage', 'Growth', 'Acquisition', 'Public Markets'],
+    ar: ['المرحلة المبكرة', 'النمو', 'الاستحواذ', 'الأسواق العامة']
+  },
+  horizons: {
+    en: ['Under 1 year', '1–3 years', '3–7 years', '7+ years'],
+    ar: ['أقل من سنة', '1–3 سنوات', '3–7 سنوات', '+7 سنوات']
+  },
+  concerns: {
+    en: ['Regulatory', 'Currency Risk', 'Exit Options', 'Competition', 'Geopolitical'],
+    ar: ['التنظيم والتشريعات', 'مخاطر العملة', 'خيارات الخروج', 'المنافسة', 'الجيوسياسة']
+  }
+};
+
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+  sector: null, sectorIdx: null,
+  countries: [],
+  stage: null, stageIdx: null,
+  horizon: null, horizonIdx: null,
+  concern: null, concernIdx: null
+};
+
+// ============================================================
+// LANG HELPERS
+// ============================================================
+function isAr(){ return document.documentElement.dir === 'rtl'; }
+function t(enStr, arStr){ return isAr() ? arStr : enStr; }
+
+// ============================================================
+// DROPDOWN
+// ============================================================
+function buildDropdowns(){
+  buildDropdown('sector', DATA.sectors);
+  buildDropdown('stage', DATA.stages);
+  buildDropdown('horizon', DATA.horizons);
+  buildChips('country', DATA.countries);
+  buildChips('concern', DATA.concerns);
+}
+
+function buildDropdown(key, data){
+  const dd = document.getElementById('dd-' + key);
+  if(!dd) return;
+  const ar = isAr();
+  const items = ar ? data.ar : data.en;
+  const itemsEn = data.en;
+  dd.innerHTML = '';
+  items.forEach((label, i) => {
+    const div = document.createElement('div');
+    div.className = 'select-option' + (state[key + 'Idx'] === i ? ' selected' : '');
+    div.textContent = label;
+    div.onclick = () => selectOption(key, label, itemsEn[i], i);
+    dd.appendChild(div);
+  });
+}
+
+function buildChips(key, data){
+  const container = document.getElementById('chips-' + key);
+  if(!container) return;
+  const ar = isAr();
+  const items = ar ? data.ar : data.en;
+  const itemsEn = data.en;
+  container.innerHTML = '';
+  items.forEach((label, i) => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    const isMulti = key === 'country';
+    const activeCheck = isMulti
+      ? state.countries.includes(itemsEn[i])
+      : state.concernIdx === i;
+    chip.className = 'chip' + (activeCheck ? ' active' : '');
+    chip.textContent = label;
+    chip.onclick = () => toggleChip(key, label, itemsEn[i], i, chip);
+    container.appendChild(chip);
+  });
+}
+
+function toggleDropdown(key){
+  const dd = document.getElementById('dd-' + key);
+  const trigger = document.querySelector('#sel-' + key + ' .select-trigger');
+  const isOpen = dd.classList.contains('open');
+  closeAllDropdowns();
+  if(!isOpen){
+    dd.classList.add('open');
+    trigger.classList.add('open');
+  }
+}
+
+function closeAllDropdowns(){
+  document.querySelectorAll('.select-dropdown').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.select-trigger').forEach(t => t.classList.remove('open'));
+}
+
+document.addEventListener('click', e => {
+  if(!e.target.closest('.custom-select')) closeAllDropdowns();
+});
+
+function selectOption(key, labelDisplay, labelEn, idx){
+  state[key] = labelEn;
+  state[key + 'Idx'] = idx;
+  const valEl = document.getElementById('val-' + key);
+  valEl.textContent = labelDisplay;
+  valEl.classList.remove('placeholder');
+  closeAllDropdowns();
+  checkReady();
+}
+
+function toggleChip(key, labelDisplay, labelEn, idx, chipEl){
+  if(key === 'country'){
+    const pos = state.countries.indexOf(labelEn);
+    if(pos === -1){
+      state.countries.push(labelEn);
+      chipEl.classList.add('active');
+    } else {
+      state.countries.splice(pos, 1);
+      chipEl.classList.remove('active');
+    }
+  } else {
+    // single select (concern)
+    document.querySelectorAll('#chips-concern .chip').forEach(c => c.classList.remove('active'));
+    state.concern = labelEn;
+    state.concernIdx = idx;
+    chipEl.classList.add('active');
+  }
+  checkReady();
+}
+
+function checkReady(){
+  const ready = state.sector && state.countries.length > 0 && state.stage && state.horizon && state.concern;
+  document.getElementById('submitBtn').disabled = !ready;
+}
+
+// ============================================================
+// GENERATE
+// ============================================================
+
+// ⚠️  REPLACE WITH YOUR GEMINI API KEY FOR TESTING
+// Move to a backend proxy (Cloudflare Worker) before going public
+const GEMINI_API_KEY = 'GEMINI_KEY_PLACEHOLDER';
+
+async function generateBrief(){
+  showState('loading');
+
+  const ar = isAr();
+  const lang = ar ? 'Arabic' : 'English';
+  const countriesStr = state.countries.join(', ');
+
+  const prompt = buildPrompt(lang, countriesStr);
+
+  try {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${GEMINI_API_KEY}`
+        },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.7, maxOutputTokens: 600 }
+        })
+      }
+    );
+
+    if(!res.ok) throw new Error('API error ' + res.status);
+
+    const data = await res.json();
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const parsed = parseResponse(text);
+    renderOutput(parsed, countriesStr);
+    showState('output');
+
+  } catch(err) {
+    console.error(err);
+    // Fallback for testing without a real key
+    const fallback = buildFallback(countriesStr);
+    renderOutput(fallback, countriesStr);
+    showState('output');
+  }
+}
+
+function buildPrompt(lang, countriesStr){
+  const ar = lang === 'Arabic';
+  return `You are MEIG — MENA Economic Intelligence Group — a senior economic advisory firm. You produce concise, judgment-led investment intelligence for sophisticated investors entering or operating in the MENA region.
+
+The investor has provided:
+- Sector: ${state.sector}
+- Country/Region: ${countriesStr}
+- Investment Stage: ${state.stage}
+- Time Horizon: ${state.horizon}
+- Primary Concern: ${state.concern}
+
+Produce an Investment Signal Brief with exactly four sections. Respond ONLY with a JSON object — no markdown, no preamble, no explanation. Use this exact structure:
+
+{
+  "signal": "...",
+  "risk": "...",
+  "timing": "...",
+  "meig_view": "..."
+}
+
+Rules:
+- SIGNAL: The single most important market dynamic in this sector/country right now. Be specific. No generalizations.
+- RISK: The most underappreciated risk investors from outside the region miss. Name it directly.
+- TIMING: Is the entry window open, narrowing, or closed? One clear judgment with brief reasoning.
+- MEIG VIEW: Exactly two sentences. MEIG's positioning on this opportunity. Authoritative, not hedged.
+- Tone: Senior. Direct. No filler. No disclaimers. No "it depends."
+- Total words: 220–300.
+- Language: Respond entirely in ${lang}.`;
+}
+
+function parseResponse(text){
+  try {
+    const clean = text.replace(/```json|```/g, '').trim();
+    return JSON.parse(clean);
+  } catch(e){
+    // If parsing fails, return raw text split by newlines as fallback
+    return {
+      signal: text,
+      risk: '—',
+      timing: '—',
+      meig_view: '—'
+    };
+  }
+}
+
+function buildFallback(countriesStr){
+  const ar = isAr();
+  if(ar){
+    return {
+      signal: `قطاع ${state.sector} في ${countriesStr} يشهد إعادة هيكلة استراتيجية مدفوعة بتحولات السياسات الإقليمية ومتطلبات التنويع الاقتصادي. المشاريع ذات الارتباط الواضح بأجندات التنويع الوطنية تحظى بأولوية تنظيمية وتمويلية غير مسبوقة.`,
+      risk: `المخاطرة الأكثر إغفالاً هي الاعتماد على صانعي القرار الأفراد بدلاً من المؤسسات — تغيير في القيادة قد يعيد تشكيل أولويات القطاع بالكامل خلال أسابيع.`,
+      timing: `نافذة الدخول مفتوحة حالياً لكنها تضيق. التوجهات التنظيمية الحالية تفضّل المستثمرين الأوائل، غير أن المنافسة على الأصول الجيدة ترتفع بشكل ملحوظ في الأفق الزمني الذي حددته.`,
+      meig_view: `هذا القطاع في المنطقة يقدم فرصاً حقيقية لمن يفهم ديناميكياته المحلية. التقييم الكامل ضروري قبل أي التزام.`
+    };
+  }
+  return {
+    signal: `The ${state.sector} sector in ${countriesStr} is undergoing strategic realignment driven by regional policy shifts and economic diversification mandates. Projects with clear alignment to national diversification agendas are receiving unprecedented regulatory and financing priority.`,
+    risk: `The most overlooked risk is reliance on individual decision-makers rather than institutions — a leadership change can reshape sector priorities entirely within weeks.`,
+    timing: `The entry window is currently open but narrowing. Current regulatory trends favor early movers, however competition for quality assets is rising significantly within your stated time horizon.`,
+    meig_view: `This sector presents genuine opportunities for those who understand its local dynamics. Full assessment is essential before any commitment.`
+  };
+}
+
+function renderOutput(parsed, countriesStr){
+  const ar = isAr();
+  document.getElementById('outputTitle').textContent =
+    ar ? `${state.sector} · ${countriesStr}` : `${state.sector} · ${countriesStr}`;
+  document.getElementById('outputMeta').innerHTML =
+    `<span>${ar ? state.stage : state.stage}</span><span>${ar ? state.horizon : state.horizon}</span><span>${ar ? state.concern : state.concern}</span>`;
+  document.getElementById('outSignal').textContent = parsed.signal || '—';
+  document.getElementById('outRisk').textContent = parsed.risk || '—';
+  document.getElementById('outTiming').textContent = parsed.timing || '—';
+  document.getElementById('outView').textContent = parsed.meig_view || '—';
+}
+
+function showState(which){
+  document.getElementById('stateEmpty').style.display = which === 'empty' ? 'flex' : 'none';
+  document.getElementById('stateLoading').style.display = which === 'loading' ? 'flex' : 'none';
+  document.getElementById('stateOutput').style.display = which === 'output' ? 'block' : 'none';
+}
+
+function resetForm(){
+  state.sector = null; state.sectorIdx = null;
+  state.countries = [];
+  state.stage = null; state.stageIdx = null;
+  state.horizon = null; state.horizonIdx = null;
+  state.concern = null; state.concernIdx = null;
+  buildDropdowns();
+  ['sector','stage','horizon'].forEach(k => {
+    const v = document.getElementById('val-' + k);
+    const ar = isAr();
+    v.innerHTML = ar
+      ? { sector:'اختر قطاعاً', stage:'اختر المرحلة', horizon:'اختر الأفق الزمني' }[k]
+      : { sector:'Select a sector', stage:'Select a stage', horizon:'Select a horizon' }[k];
+    v.classList.add('placeholder');
+  });
+  document.getElementById('submitBtn').disabled = true;
+  showState('empty');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+// LANG TOGGLE
+// ============================================================
+function toggleLang(){
+  const html = document.documentElement;
+  const isRtl = html.dir === 'rtl';
+  html.dir = isRtl ? 'ltr' : 'rtl';
+  html.lang = isRtl ? 'en' : 'ar';
+  rebuildSelects();
+}
+
+function rebuildSelects(){
+  buildDropdown('sector', DATA.sectors);
+  buildDropdown('stage', DATA.stages);
+  buildDropdown('horizon', DATA.horizons);
+  buildChips('country', DATA.countries);
+  buildChips('concern', DATA.concerns);
+  // Update visible selected values
+  const ar = isAr();
+  if(state.sectorIdx !== null){
+    const v = document.getElementById('val-sector');
+    v.textContent = ar ? DATA.sectors.ar[state.sectorIdx] : DATA.sectors.en[state.sectorIdx];
+    v.classList.remove('placeholder');
+  }
+  if(state.stageIdx !== null){
+    const v = document.getElementById('val-stage');
+    v.textContent = ar ? DATA.stages.ar[state.stageIdx] : DATA.stages.en[state.stageIdx];
+    v.classList.remove('placeholder');
+  }
+  if(state.horizonIdx !== null){
+    const v = document.getElementById('val-horizon');
+    v.textContent = ar ? DATA.horizons.ar[state.horizonIdx] : DATA.horizons.en[state.horizonIdx];
+    v.classList.remove('placeholder');
+  }
+}
+
+function withLang(linkEl){
+  const ar = isAr();
+  const base = linkEl.getAttribute('href').split('?')[0];
+  linkEl.href = base + (ar ? '?lang=ar' : '?lang=en');
+  return true;
+}
+
+(function initLangFromUrl(){
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get('lang');
+  if(lang === 'ar'){
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
+  } else if(lang === 'en'){
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+  }
+})();
+
+// ============================================================
+// INIT
+// ============================================================
+buildDropdowns();
+showState('empty');
+</script>
+</body>
+</html>
