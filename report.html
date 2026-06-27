@@ -529,9 +529,8 @@ function checkReady(){
 // GENERATE
 // ============================================================
 
-// ⚠️  REPLACE WITH YOUR GEMINI API KEY FOR TESTING
-// Move to a backend proxy (Cloudflare Worker) before going public
-const GEMINI_API_KEY = 'GEMINI_KEY_PLACEHOLDER';
+// Cloudflare Worker proxy — API key stored securely server-side
+const PROXY_URL = 'https://meig-gemini-proxy.meigadvisory.workers.dev';
 
 async function generateBrief(){
   showState('loading');
@@ -543,20 +542,14 @@ async function generateBrief(){
   const prompt = buildPrompt(lang, countriesStr);
 
   try {
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${GEMINI_API_KEY}`
-        },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.7, maxOutputTokens: 600 }
-        })
-      }
-    );
+    const res = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.7, maxOutputTokens: 600 }
+      })
+    });
 
     if(!res.ok) throw new Error('API error ' + res.status);
 
